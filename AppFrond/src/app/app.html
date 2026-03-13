@@ -1,0 +1,38 @@
+<div class="container">
+  <!-- Sidebar (Solo si no es login) -->
+  <aside class="sidebar" *ngIf="router.url !== '/login'">
+    <h1>LibraryPro</h1>
+    <nav>
+      <a routerLink="/home" routerLinkActive="active" class="nav-link">
+        <i class="icon-home"></i> Inicio
+      </a>
+      <hr style="opacity: 0.1; margin: 1rem 0;">
+      <a routerLink="/prestamos" routerLinkActive="active" class="nav-link">
+        <i class="icon-book"></i> Préstamos
+      </a>
+      <a routerLink="/donaciones" routerLinkActive="active" class="nav-link">
+        <i class="icon-gift"></i> Donaciones
+      </a>
+      <a routerLink="/libros" routerLinkActive="active" class="nav-link">
+        <i class="icon-list"></i> Inventario de Libros
+      </a>
+      <hr style="opacity: 0.1; margin: 1rem 0;">
+      <a routerLink="/gestion-responsables" routerLinkActive="active" class="nav-link">
+        <i class="icon-users"></i> Gestionar Responsables
+      </a>
+      <a routerLink="/reportes" routerLinkActive="active" class="nav-link">
+        <i class="icon-chart"></i> Reportes
+      </a>
+    </nav>
+    <div style="margin-top: auto;">
+      <a routerLink="/login" class="nav-link" style="color: #f87171;">
+        <i class="icon-logout"></i> Salir
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -1,0 +1,53 @@
+<header>
+  <h2>Panel de Inicio</h2>
+  <div class="user-info">
+    <span>Bienvenido, <strong>Admin</strong></span>
+  </div>
+</header>
+
+<div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+  <div class="card stat-card" style="border-left: 4px solid var(--primary);">
+    <p style="color: var(--text-muted); font-size: 0.875rem;">Libros Disponibles</p>
+    <p style="font-size: 2rem; font-weight: 700;">{{ estadisticas.librosDisponibles }}</p>
+  </div>
+  <div class="card stat-card" style="border-left: 4px solid var(--secondary);">
+    <p style="color: var(--text-muted); font-size: 0.875rem;">Préstamos Activos</p>
+    <p style="font-size: 2rem; font-weight: 700;">{{ estadisticas.prestamosActivos }}</p>
+  </div>
+  <div class="card stat-card" style="border-left: 4px solid #f59e0b;">
+    <p style="color: var(--text-muted); font-size: 0.875rem;">Donaciones del Mes</p>
+    <p style="font-size: 2rem; font-weight: 700;">{{ estadisticas.donacionesMes }}</p>
+  </div>
+  <div class="card stat-card" style="border-left: 4px solid #8b5cf6;">
+    <p style="color: var(--text-muted); font-size: 0.875rem;">Usuarios</p>
+    <p style="font-size: 2rem; font-weight: 700;">{{ estadisticas.usuariosRegistrados }}</p>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Actividad Reciente</h3>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Tipo</th>
+        <th>Libro</th>
+        <th>Usuario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>14/03/2026</td>
+        <td><span style="color: var(--primary);">Préstamo</span></td>
+        <td>1984</td>
+        <td>Juan Pérez</td>
+      </tr>
+      <tr>
+        <td>13/03/2026</td>
+        <td><span style="color: var(--secondary);">Donación</span></td>
+        <td>El Hobbit</td>
+        <td>Ana García</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

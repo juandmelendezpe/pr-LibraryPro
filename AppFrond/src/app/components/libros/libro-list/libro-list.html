@@ -1,0 +1,61 @@
+<header>
+  <h2>Inventario de Libros</h2>
+  <button class="btn btn-primary">+ Nuevo Libro</button>
+</header>
+
+<div class="card" style="margin-bottom: 2rem;">
+  <form (ngSubmit)="buscar()" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; align-items: end;">
+    <div class="form-group" style="margin-bottom: 0;">
+      <label>Título</label>
+      <input type="text" name="titulo" [(ngModel)]="filtros.titulo" placeholder="Buscar por título...">
+    </div>
+    <div class="form-group" style="margin-bottom: 0;">
+      <label>Autor</label>
+      <input type="text" name="autor" [(ngModel)]="filtros.autor" placeholder="Buscar por autor...">
+    </div>
+    <div class="form-group" style="margin-bottom: 0;">
+      <label>Género</label>
+      <input type="text" name="genero" [(ngModel)]="filtros.genero" placeholder="Buscar por género...">
+    </div>
+    <div style="display: flex; gap: 0.5rem;">
+      <button type="submit" class="btn btn-primary" style="flex: 1;">Buscar</button>
+      <button type="button" class="btn" (click)="limpiar()" style="background: #e2e8f0;">Limpiar</button>
+    </div>
+  </form>
+</div>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Género</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let libro of libros">
+        <td>{{ libro.id }}</td>
+        <td><strong>{{ libro.titulo }}</strong></td>
+        <td>{{ libro.autor }}</td>
+        <td>{{ libro.genero }}</td>
+        <td>
+          <span [class]="'badge badge-' + libro.estado.descripcion.toLowerCase()">
+            {{ libro.estado.descripcion }}
+          </span>
+        </td>
+        <td>
+          <button class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">Editar</button>
+        </td>
+      </tr>
+      <tr *ngIf="libros.length === 0">
+        <td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+          No se encontraron libros.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

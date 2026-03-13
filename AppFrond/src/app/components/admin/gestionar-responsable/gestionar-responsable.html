@@ -1,0 +1,42 @@
+<header>
+  <h2>Gestionar Responsables</h2>
+  <button class="btn btn-primary">+ Nuevo Responsable</button>
+</header>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usuarios">
+        <td><strong>{{ user.nombre }}</strong></td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.rol.titulo }}</td>
+        <td>
+          <span [class]="user.activo ? 'badge-active' : 'badge-inactive'" 
+                style="padding: 0.25rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600;"
+                [style.background]="user.activo ? '#dcfce7' : '#fee2e2'"
+                [style.color]="user.activo ? '#166534' : '#991b1b'">
+            {{ user.activo ? 'Activo' : 'Inactivo' }}
+          </span>
+        </td>
+        <td style="display: flex; gap: 0.5rem;">
+          <button class="btn" (click)="cambiarEstado(user)" style="font-size: 0.75rem; background: #e2e8f0;">
+            {{ user.activo ? 'Desactivar' : 'Activar' }}
+          </button>
+          <button class="btn" (click)="promoverASuperAdmin(user)" style="font-size: 0.75rem; background: #dcfce7; color: #166534;">
+            SuperAdmin
+          </button>
+          <button class="btn" style="font-size: 0.75rem; background: #f1f5f9;">Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

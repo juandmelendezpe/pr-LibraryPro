@@ -1,0 +1,53 @@
+<header>
+  <h2>Registrar Préstamo</h2>
+</header>
+
+<div class="card" style="max-width: 600px;">
+  <form (ngSubmit)="registrarPrestamo()">
+    <div class="form-group">
+      <label>Libro a Prestar</label>
+      <select name="libro" [(ngModel)]="prestamo.libro.id" required style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border);">
+        <option [ngValue]="null" disabled>Seleccione un libro disponible...</option>
+        <option *ngFor="let libro of librosDisponibles" [value]="libro.id">{{ libro.titulo }} - {{ libro.autor }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Email del Prestatario</label>
+      <div style="display: flex; gap: 0.5rem;">
+        <input type="email" name="email" [(ngModel)]="prestamo.prestatario.email" required placeholder="correo@ejemplo.com" style="flex: 1;">
+        <button type="button" class="btn" (click)="toggleUsuarioNuevo()" [style.background]="usuarioNuevo ? 'var(--secondary)' : '#e2e8f0'">
+          {{ usuarioNuevo ? '✓ Perfil Nuevo' : '+ Perfil Nuevo' }}
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="usuarioNuevo" class="card" style="margin: 1rem 0; background: #f1f5f9; padding: 1rem;">
+      <h4>Datos del Nuevo Perfil</h4>
+      <div class="form-group">
+        <label>Nombre Completo</label>
+        <input type="text" name="nombre" [(ngModel)]="prestamo.prestatario.nombre" placeholder="Nombre completo">
+      </div>
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="text" name="telefono" [(ngModel)]="prestamo.prestatario.telefono" placeholder="Opcional">
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div class="form-group">
+        <label>Fecha de Inicio</label>
+        <input type="date" name="fechaInicio" [(ngModel)]="prestamo.fechaInicio" required>
+      </div>
+      <div class="form-group">
+        <label>Fecha Estimada Devolución</label>
+        <input type="date" name="fechaDevolucion" [(ngModel)]="prestamo.fechaDevolucion">
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+      <button type="submit" class="btn btn-primary" style="flex: 1;">Finalizar Registro</button>
+      <button type="button" class="btn" style="background: #e2e8f0;">Cancelar</button>
+    </div>
+  </form>
+</div>
