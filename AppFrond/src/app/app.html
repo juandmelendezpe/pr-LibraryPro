@@ -1,6 +1,12 @@
-<div class="container">
-  <!-- Sidebar (Solo si no es login) -->
-  <aside class="sidebar" *ngIf="router.url !== '/login'">
+<!-- Login Wrapper -->
+<div *ngIf="router.url === '/login'" class="w-full min-h-screen">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Main App Wrapper -->
+<div class="container" *ngIf="router.url !== '/login'">
+  <!-- Sidebar -->
+  <aside class="sidebar">
     <h1>LibraryPro</h1>
     <nav>
       <a routerLink="/home" routerLinkActive="active" class="nav-link">
@@ -25,7 +31,7 @@
       </a>
     </nav>
     <div style="margin-top: auto;">
-      <a routerLink="/login" class="nav-link" style="color: #f87171;">
+      <a (click)="logout()" class="nav-link" style="color: #f87171; cursor: pointer;">
         <i class="icon-logout"></i> Salir
       </a>
     </div>

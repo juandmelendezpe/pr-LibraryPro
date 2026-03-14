@@ -1,0 +1,94 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>LibreLink - Login</title>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark antialiased">
+<!-- Main Background Wrapper -->
+<div class="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-cover bg-center" data-alt="Cozy modern library with tall bookshelves and warm lighting" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCViUbKqqmEu9Ud8YEvf0kBO_AAEMzUB8WsdfuICjE3klPuuUCJdWseqky6ilkWjweqTpnl0b4OHNydu-xJUfmjutU0OZ3ppZ7pK3utM4iSqATJHe5Kx0dxqltvNDDFLvStV17dy3vKD48oKk1It5uqDcjRCS7Z557U1yxAATitPRbIZKZ5Pg0B0YYjeOgxBXe-KzTRSQTvFUvNQFlaHxiiwYEVSypSU3IKbFy3OihpxI41FtMssLmNdGSJFbNm7nOfqOzg_fIyoWI&quot;);">
+<!-- Overlay for better contrast -->
+<div class="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px]"></div>
+<!-- Glassmorphism Login Card -->
+<div class="relative z-10 w-full max-w-[440px] px-6">
+<div class="bg-white/10 dark:bg-slate-900/60 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 rounded-xl shadow-2xl p-8 md:p-10">
+<!-- Logo & Header -->
+<div class="flex flex-col items-center mb-8">
+<div class="size-12 bg-primary rounded-lg flex items-center justify-center mb-4 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-3xl" style="">menu_book</span>
+</div>
+<h1 class="text-3xl font-bold text-slate-100 tracking-tight" style="">LibraryPro</h1>
+<p class="text-slate-300 mt-2 text-center text-sm" style="">Manage your personal library with ease</p>
+</div>
+<!-- Login Form -->
+<form class="space-y-5">
+<!-- Email Field -->
+<div class="flex flex-col gap-2">
+<label class="text-slate-200 text-sm font-medium ml-1" style="">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl" style="">mail</span>
+<input class="w-full bg-white/5 dark:bg-slate-800/40 border border-white/10 dark:border-slate-700 rounded-lg py-3.5 pl-12 pr-4 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="name@example.com" type="email">
+</div>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-2">
+<label class="text-slate-200 text-sm font-medium ml-1" style="">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl" style="">lock</span>
+<input class="w-full bg-white/5 dark:bg-slate-800/40 border border-white/10 dark:border-slate-700 rounded-lg py-3.5 pl-12 pr-12 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="••••••••" type="password">
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white" type="button" style="">
+<span class="material-symbols-outlined text-xl" style="">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember Me & Forgot Password -->
+<div class="flex items-center justify-between py-1">
+<label class="flex items-center gap-2 cursor-pointer group" style="">
+<div class="relative flex items-center">
+<input class="peer appearance-none size-5 border-2 border-slate-500 rounded bg-transparent checked:bg-primary checked:border-primary transition-all" type="checkbox">
+<span class="material-symbols-outlined absolute text-white text-sm scale-0 peer-checked:scale-100 left-[3px] pointer-events-none transition-transform" style="">check</span>
+</div>
+<span class="text-slate-300 text-sm group-hover:text-white transition-colors" style="">Remember me</span>
+</label>
+<a class="text-primary hover:text-primary/80 text-sm font-medium transition-colors" href="#" style="">Forgot Password?</a>
+</div>
+<!-- Login Button -->
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3.5 rounded-lg shadow-lg shadow-primary/20 transition-all active:scale-[0.98] mt-2" style="">
+                        Sign In
+                    </button>
+</form>
+<!-- Footer Links -->
+<div class="mt-8 text-center border-t border-white/10 pt-6">
+<p class="text-slate-400 text-sm" style="">Bienvenidos a Library Pro</p>
+</div>
+</div>
+<!-- Small Bottom Links -->
+<div class="mt-8 flex justify-center gap-6 text-xs text-slate-400 font-medium">
+<a class="hover:text-white transition-colors uppercase tracking-widest" href="#" style="">Privacy Policy</a>
+<a class="hover:text-white transition-colors uppercase tracking-widest" href="#" style="">Terms of Service</a>
+<a class="hover:text-white transition-colors uppercase tracking-widest" href="#" style="">Support</a>
+</div>
+</div>
+</div>
+</body></html>

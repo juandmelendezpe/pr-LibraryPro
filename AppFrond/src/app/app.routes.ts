@@ -5,13 +5,14 @@ import { LibroListComponent } from './components/libros/libro-list/libro-list';
 import { PrestamoFormComponent } from './components/prestamos/prestamo-form/prestamo-form';
 import { DonacionFormComponent } from './components/donaciones/donacion-form/donacion-form';
 import { GestionarResponsableComponent } from './components/admin/gestionar-responsable/gestionar-responsable';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: InicioComponent },
-  { path: 'libros', component: LibroListComponent },
-  { path: 'prestamos', component: PrestamoFormComponent },
-  { path: 'donaciones', component: DonacionFormComponent },
-  { path: 'gestion-responsables', component: GestionarResponsableComponent },
+  { path: 'home', component: InicioComponent, canActivate: [authGuard] },
+  { path: 'libros', component: LibroListComponent, canActivate: [authGuard] },
+  { path: 'prestamos', component: PrestamoFormComponent, canActivate: [authGuard] },
+  { path: 'donaciones', component: DonacionFormComponent, canActivate: [authGuard] },
+  { path: 'gestion-responsables', component: GestionarResponsableComponent, canActivate: [authGuard] },
 ];
