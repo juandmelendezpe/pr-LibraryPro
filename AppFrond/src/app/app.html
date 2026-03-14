@@ -3,42 +3,93 @@
   <router-outlet></router-outlet>
 </div>
 
-<!-- Main App Wrapper -->
-<div class="container" *ngIf="router.url !== '/login'">
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <h1>LibraryPro</h1>
-    <nav>
-      <a routerLink="/home" routerLinkActive="active" class="nav-link">
-        <i class="icon-home"></i> Inicio
-      </a>
-      <hr style="opacity: 0.1; margin: 1rem 0;">
-      <a routerLink="/prestamos" routerLinkActive="active" class="nav-link">
-        <i class="icon-book"></i> Préstamos
-      </a>
-      <a routerLink="/donaciones" routerLinkActive="active" class="nav-link">
-        <i class="icon-gift"></i> Donaciones
-      </a>
-      <a routerLink="/libros" routerLinkActive="active" class="nav-link">
-        <i class="icon-list"></i> Inventario de Libros
-      </a>
-      <hr style="opacity: 0.1; margin: 1rem 0;">
-      <a routerLink="/gestion-responsables" routerLinkActive="active" class="nav-link">
-        <i class="icon-users"></i> Gestionar Responsables
-      </a>
-      <a routerLink="/reportes" routerLinkActive="active" class="nav-link">
-        <i class="icon-chart"></i> Reportes
-      </a>
-    </nav>
-    <div style="margin-top: auto;">
-      <a (click)="logout()" class="nav-link" style="color: #f87171; cursor: pointer;">
-        <i class="icon-logout"></i> Salir
-      </a>
+<!-- Main App Wrapper (OS Layout) -->
+<div *ngIf="router.url !== '/login'" class="relative h-screen w-full flex flex-col desktop-bg overflow-hidden"
+  data-alt="Deep blue abstract gradient desktop wallpaper">
+  <!-- Top Menu Bar (OS Style) -->
+  <header
+    class="flex items-center justify-between px-6 h-10 bg-[#061a40]/90 backdrop-blur-md border-b border-white/10 w-full z-50 text-slate-100 text-sm font-medium">
+    <div class="flex items-center gap-6">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-lg">settings_input_component</span>
+        <span class="font-bold">LibraryPro</span>
+      </div>
+      <div class="hidden md:flex gap-4">
+        <span routerLink="/home" class="cursor-pointer hover:text-white transition-colors">Inicio</span>
+        <span>Bienvenido, {{ loggedUserName }}</span>
+        <span (click)="logout()" class="cursor-pointer text-red-400 hover:text-red-300 transition-colors">Cerrar
+          login</span>
+        <span class="cursor-pointer hover:text-white transition-colors">Soporte Técnico</span>
+      </div>
     </div>
-  </aside>
+    <div class="flex items-center gap-4">
+      <span class="material-symbols-outlined text-lg">format_list_bulleted</span>
+      <span>{{ currentTime }}</span>
+    </div>
+  </header>
 
-  <!-- Main Content Area -->
-  <main class="main-content">
+  <!-- Desktop Area -->
+  <main class="flex-1 w-full h-full relative overflow-y-auto overflow-x-hidden no-scrollbar pb-32 flex flex-col items-center">
+    <!-- Router Outlet takes up space in the desktop as a window or straight elements -->
     <router-outlet></router-outlet>
   </main>
+
+  <!-- OS Dock (Bottom Menu) -->
+  <nav
+    class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-[#061a40]/80 backdrop-blur-md border border-white/10 rounded-2xl p-3 flex items-center gap-4 z-50">
+    <div class="group relative flex flex-col items-center">
+      <div
+        class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg cursor-pointer hover:scale-110 transition-transform active:scale-95 border border-white/10"
+        routerLink="/prestamos" routerLinkActive="!bg-primary/80">
+        <span class="material-symbols-outlined text-3xl">handshake</span>
+      </div>
+      <span
+        class="absolute -top-10 opacity-0 group-hover:opacity-100 bg-black/80 text-white text-[10px] px-2 py-1 rounded-md transition-opacity whitespace-nowrap">Préstamos</span>
+      <!-- Indicator dot for active route can be added with CSS logic if needed -->
+    </div>
+
+    <div class="group relative flex flex-col items-center">
+      <div
+        class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white shadow-lg cursor-pointer hover:scale-110 transition-transform active:scale-95 border border-white/10"
+        routerLink="/donaciones" routerLinkActive="!bg-primary">
+        <span class="material-symbols-outlined text-3xl">volunteer_activism</span>
+      </div>
+      <span
+        class="absolute -top-10 opacity-0 group-hover:opacity-100 bg-black/80 text-white text-[10px] px-2 py-1 rounded-md transition-opacity whitespace-nowrap">Donaciones</span>
+    </div>
+
+    <div class="group relative flex flex-col items-center">
+      <div
+        class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white shadow-lg cursor-pointer hover:scale-110 transition-transform active:scale-95 border border-white/10"
+        routerLink="/libros" routerLinkActive="!bg-primary">
+        <span class="material-symbols-outlined text-3xl">local_library</span>
+      </div>
+      <span
+        class="absolute -top-10 opacity-0 group-hover:opacity-100 bg-black/80 text-white text-[10px] px-2 py-1 rounded-md transition-opacity whitespace-nowrap">Inv
+        Libros</span>
+    </div>
+
+    <div class="w-px h-8 bg-white/20 mx-1"></div>
+
+    <div class="group relative flex flex-col items-center">
+      <div
+        class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white shadow-lg cursor-pointer hover:scale-110 transition-transform active:scale-95 border border-white/10"
+        routerLink="/gestion-responsables" routerLinkActive="!bg-primary">
+        <span class="material-symbols-outlined text-3xl">group</span>
+      </div>
+      <span
+        class="absolute -top-10 opacity-0 group-hover:opacity-100 bg-black/80 text-white text-[10px] px-2 py-1 rounded-md transition-opacity whitespace-nowrap">Gestores</span>
+    </div>
+
+    <div class="group relative flex flex-col items-center">
+      <div
+        class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white shadow-lg cursor-pointer hover:scale-110 transition-transform active:scale-95 border border-white/10"
+        routerLink="/reportes" routerLinkActive="!bg-primary">
+        <span class="material-symbols-outlined text-3xl">insert_chart</span>
+      </div>
+      <span
+        class="absolute -top-10 opacity-0 group-hover:opacity-100 bg-black/80 text-white text-[10px] px-2 py-1 rounded-md transition-opacity whitespace-nowrap">Reportes</span>
+    </div>
+
+  </nav>
 </div>

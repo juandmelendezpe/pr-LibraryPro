@@ -29,17 +29,6 @@ body {
   min-height: 100vh;
 }
 
-/* Sidebar Styles */
-.sidebar {
-  width: var(--sidebar-width);
-  background: #1e293b;
-  color: white;
-  padding: 2rem 1rem;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.3s ease;
-}
-
 .sidebar h1 {
   font-size: 1.5rem;
   font-weight: 700;
@@ -87,7 +76,7 @@ h2 {
 .card {
   background: var(--bg-card);
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 1rem;
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
 }
@@ -123,16 +112,25 @@ table {
 th {
   text-align: left;
   padding: 1rem;
-  background: #f1f5f9;
   font-weight: 600;
-  color: var(--text-muted);
 }
 
 td {
   padding: 1rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--text-muted);
 }
 
 tr:hover {
-  background-color: #f8fafc;
+  background-color: var(--text-muted);
+}
+.glass { background: rgba(16, 22, 34, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+.desktop-bg { background-image: linear-gradient(135deg, #1152d4 0%, #061a40 100%); }
+
+/* Hide scrollbar for complete OS illusion */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

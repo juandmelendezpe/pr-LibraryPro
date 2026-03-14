@@ -15,6 +15,12 @@ export class InicioComponent implements OnInit {
     usuariosRegistrados: 85
   };
 
+  nuevosIngresos = [
+    { titulo: 'Clean Code', autor: 'Robert C. Martin', genero: 'Programación' },
+    { titulo: 'Don Quijote', autor: 'Miguel de Cervantes', genero: 'Novela Clásica' },
+    { titulo: 'El Color de la Magia', autor: 'Terry Pratchett', genero: 'Fantasía' }
+  ];
+
   constructor() { }
 
   ngOnInit(): void { }
