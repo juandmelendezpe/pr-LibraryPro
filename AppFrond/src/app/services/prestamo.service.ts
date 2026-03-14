@@ -7,7 +7,7 @@ import { Prestamo } from '../models/models';
   providedIn: 'root'
 })
 export class PrestamoService {
-  private apiUrl = 'http://localhost:8080/api/prestamos';
+  private apiUrl = 'http://localhost:8087/api/prestamos';
 
   constructor(private http: HttpClient) { }
 

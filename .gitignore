@@ -1,0 +1,75 @@
+# ##############################################################################
+# PR-LibraryPro Global Gitignore
+# ##############################################################################
+
+# IDEs and Editors
+# ------------------------------------------------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+.history/
+.project
+.classpath
+.factorypath
+.settings/
+.springBeans
+.sts4-cache
+.apt_generated
+*.iws
+*.iml
+*.ipr
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+*.launch
+*.sublime-workspace
+
+# System Files
+# ------------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node / Angular (AppFrond)
+# ------------------------------------------------------------------------------
+**/node_modules/
+**/dist/
+**/tmp/
+**/out-tsc/
+**/bazel-out/
+**/.angular/cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/
+
+# Java / Maven (AppBack)
+# ------------------------------------------------------------------------------
+**/target/
+**/.mvn/wrapper/maven-wrapper.jar
+**/build/
+
+# Exceptions to keep target/build folders for specific source cases (Spring patterns)
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Local configuration / Environment variables
+# ------------------------------------------------------------------------------
+.env
+.env.local
+.env.*.local
+
+# Project Specific
+# ------------------------------------------------------------------------------
+AppBack/libraryPro/HELP.md
