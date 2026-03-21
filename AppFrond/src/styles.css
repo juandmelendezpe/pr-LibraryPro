@@ -1,5 +1,6 @@
 :root {
   --primary: #2563eb;
+  --purple: #cb3eeb;
   --primary-hover: #1d4ed8;
   --secondary: #10b981;
   --bg-main: #f8fafc;
@@ -56,12 +57,12 @@ body {
 /* Main Content */
 .main-content {
   flex: 1;
-  padding: 2rem;
+  padding: 1rem;
   overflow-y: auto;
 }
 
 header {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -133,4 +134,7 @@ tr:hover {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+.border-purple{
+  border-color: var(--purple);
 }

@@ -16,27 +16,29 @@
       </div>
       <div class="hidden md:flex gap-4">
         <span routerLink="/home" class="cursor-pointer hover:text-white transition-colors">Inicio</span>
-        <span>Bienvenido, {{ loggedUserName }}</span>
-        <span (click)="logout()" class="cursor-pointer text-red-400 hover:text-red-300 transition-colors">Cerrar
-          login</span>
-        <span class="cursor-pointer hover:text-white transition-colors">Soporte Técnico</span>
+        <span routerLink="/prestamos" class="cursor-pointer hover:text-white transition-colors">| Préstamos</span>
+        <span routerLink="/donaciones" class="cursor-pointer hover:text-white transition-colors">| Donaciones</span>
+        <span routerLink="/libros" class="cursor-pointer hover:text-white transition-colors">| Libros</span>        
+        <span class="cursor-pointer hover:text-white transition-colors">| Soporte Técnico</span>
       </div>
     </div>
     <div class="flex items-center gap-4">
+      <span>Bienvenido: {{ loggedUserName }}</span>
+      <span (click)="logout()" class="cursor-pointer text-red-400 hover:text-red-300 transition-colors">Cerrar login</span>
       <span class="material-symbols-outlined text-lg">format_list_bulleted</span>
       <span>{{ currentTime }}</span>
     </div>
   </header>
 
   <!-- Desktop Area -->
-  <main class="flex-1 w-full h-full relative overflow-y-auto overflow-x-hidden no-scrollbar pb-32 flex flex-col items-center">
+  <main class="flex-1 w-full h-full relative overflow-y-auto overflow-x-hidden no-scrollbar pb-32 flex flex-col">
     <!-- Router Outlet takes up space in the desktop as a window or straight elements -->
     <router-outlet></router-outlet>
   </main>
 
   <!-- OS Dock (Bottom Menu) -->
   <nav
-    class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-[#061a40]/80 backdrop-blur-md border border-white/10 rounded-2xl p-3 flex items-center gap-4 z-50">
+    class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-[#061a40]/80 backdrop-blur-md border border-white/50 rounded-2xl p-3 flex items-center gap-4 z-50 hover:scale-90 transition-transform active:scale-90">
     <div class="group relative flex flex-col items-center">
       <div
         class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg cursor-pointer hover:scale-110 transition-transform active:scale-95 border border-white/10"
