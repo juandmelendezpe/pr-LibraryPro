@@ -8,16 +8,23 @@
       <h4>Información del Libro Donado</h4>
       <div class="form-group">
         <label>Título</label>
-        <input type="text" name="titulo" [(ngModel)]="donacion.libro.titulo" required placeholder="Título del libro">
+        <input type="text" name="titulo" [(ngModel)]="donacion.ejemplar.libro.titulo" required placeholder="Título del libro">
       </div>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
         <div class="form-group">
           <label>Autor</label>
-          <input type="text" name="autor" [(ngModel)]="donacion.libro.autor" required>
+          <input type="text" name="autor" [(ngModel)]="donacion.ejemplar.libro.autor" required>
         </div>
         <div class="form-group">
           <label>Género</label>
-          <input type="text" name="genero" [(ngModel)]="donacion.libro.genero">
+          <input type="text" name="genero" [(ngModel)]="donacion.ejemplar.libro.genero">
+        </div>
+        <div class="form-group">
+          <label>Condición del Ejemplar</label>
+          <select name="detalle" [(ngModel)]="donacion.ejemplar.detalle" required style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border);">
+            <option value="Nuevo">Nuevo</option>
+            <option value="Usado">Usado</option>
+          </select>
         </div>
       </div>
     </div>

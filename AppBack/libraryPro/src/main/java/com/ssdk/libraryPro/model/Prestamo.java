@@ -25,18 +25,18 @@ public class Prestamo {
     private Usuario prestatario;
 
     @ManyToOne
-    @JoinColumn(name = "libro_id")
-    private Libro libro;
+    @JoinColumn(name = "ejemplar_id")
+    private Ejemplar ejemplar;
 
     public Prestamo() {}
 
-    public Prestamo(Long id, LocalDate fechaInicio, LocalDate fechaDevolucion, EstadoPrestamo estado, Usuario prestatario, Libro libro) {
+    public Prestamo(Long id, LocalDate fechaInicio, LocalDate fechaDevolucion, EstadoPrestamo estado, Usuario prestatario, Ejemplar ejemplar) {
         this.id = id;
         this.fechaInicio = fechaInicio != null ? fechaInicio : LocalDate.now();
         this.fechaDevolucion = fechaDevolucion;
         this.estado = estado;
         this.prestatario = prestatario;
-        this.libro = libro;
+        this.ejemplar = ejemplar;
     }
 
     public Long getId() { return id; }
@@ -54,6 +54,6 @@ public class Prestamo {
     public Usuario getPrestatario() { return prestatario; }
     public void setPrestatario(Usuario prestatario) { this.prestatario = prestatario; }
 
-    public Libro getLibro() { return libro; }
-    public void setLibro(Libro libro) { this.libro = libro; }
+    public Ejemplar getEjemplar() { return ejemplar; }
+    public void setEjemplar(Ejemplar ejemplar) { this.ejemplar = ejemplar; }
 }

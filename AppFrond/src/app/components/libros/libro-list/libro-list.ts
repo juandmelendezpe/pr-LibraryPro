@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LibroService } from '../../../services/libro.service';
-import { Libro } from '../../../models/models';
+import { EjemplarService } from '../../../services/ejemplar.service';
+import { Ejemplar } from '../../../models/models';
 
 @Component({
   selector: 'app-libro-list',
@@ -11,33 +11,38 @@ import { Libro } from '../../../models/models';
   templateUrl: './libro-list.html',
 })
 export class LibroListComponent implements OnInit {
-  libros: Libro[] = [];
+  ejemplaresAll: Ejemplar[] = [];
+  ejemplares: Ejemplar[] = [];
   filtros = {
     titulo: '',
     autor: '',
     genero: ''
   };
 
-  constructor(private libroService: LibroService) { }
+  constructor(private ejemplarService: EjemplarService) { }
 
   ngOnInit(): void {
-    this.cargarLibros();
+    this.cargarEjemplares();
   }
 
-  cargarLibros() {
-    this.libroService.listarTodos().subscribe(data => {
-      this.libros = data;
+  cargarEjemplares() {
+    this.ejemplarService.listarTodos().subscribe(data => {
+      this.ejemplaresAll = data;
+      this.ejemplares = data;
     });
   }
 
   buscar() {
-    this.libroService.buscar(this.filtros).subscribe(data => {
-      this.libros = data;
-    });
+    this.ejemplares = this.ejemplaresAll.filter(e => 
+      e.libro.titulo.toLowerCase().includes(this.filtros.titulo.toLowerCase()) &&
+      e.libro.autor.toLowerCase().includes(this.filtros.autor.toLowerCase()) &&
+      (e.libro.genero || '').toLowerCase().includes(this.filtros.genero.toLowerCase())
+    );
   }
 
   limpiar() {
     this.filtros = { titulo: '', autor: '', genero: '' };
-    this.cargarLibros();
+    this.ejemplares = [...this.ejemplaresAll];
   }
 }
+

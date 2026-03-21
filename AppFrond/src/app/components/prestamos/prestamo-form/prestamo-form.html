@@ -5,10 +5,10 @@
 <div class="card" style="max-width: 600px;">
   <form (ngSubmit)="registrarPrestamo()">
     <div class="form-group">
-      <label>Libro a Prestar</label>
-      <select name="libro" [(ngModel)]="prestamo.libro.id" required style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border);">
-        <option [ngValue]="null" disabled>Seleccione un libro disponible...</option>
-        <option *ngFor="let libro of librosDisponibles" [value]="libro.id">{{ libro.titulo }} - {{ libro.autor }}</option>
+      <label>Libro a Prestar (Ejemplar)</label>
+      <select name="ejemplar" [(ngModel)]="prestamo.ejemplar.id" required style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border);">
+        <option [ngValue]="null" disabled>Seleccione un ejemplar disponible...</option>
+        <option *ngFor="let ej of ejemplaresDisponibles" [value]="ej.id">#{{ ej.id }} - {{ ej.libro.titulo }} ({{ ej.detalle }})</option>
       </select>
     </div>
 

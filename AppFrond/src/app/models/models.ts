@@ -26,9 +26,17 @@ export interface Usuario {
 
 export interface Libro {
     id?: number;
+    isbn?: string;
     titulo: string;
     autor: string;
     genero?: string;
+}
+
+export interface Ejemplar {
+    id?: number;
+    libro: Libro;
+    fecIngreso?: string;
+    detalle?: string;
     estado: EstadoLibro;
 }
 
@@ -38,7 +46,7 @@ export interface Prestamo {
     fechaDevolucion?: string;
     estado: EstadoPrestamo;
     prestatario: Usuario;
-    libro: Libro;
+    ejemplar: Ejemplar;
 }
 
 export interface Donacion {
@@ -46,5 +54,5 @@ export interface Donacion {
     fecha: string;
     observaciones?: string;
     donante: Usuario;
-    libro: Libro;
+    ejemplar: Ejemplar;
 }

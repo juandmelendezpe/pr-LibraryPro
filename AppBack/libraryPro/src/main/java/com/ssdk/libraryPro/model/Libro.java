@@ -9,6 +9,9 @@ public class Libro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, length = 20)
+    private String isbn;
+
     @Column(nullable = false, length = 255)
     private String titulo;
 
@@ -18,22 +21,21 @@ public class Libro {
     @Column(length = 50)
     private String genero;
 
-    @ManyToOne
-    @JoinColumn(name = "estado_id")
-    private EstadoLibro estado;
-
     public Libro() {}
 
-    public Libro(Long id, String titulo, String autor, String genero, EstadoLibro estado) {
+    public Libro(Long id, String isbn, String titulo, String autor, String genero) {
         this.id = id;
+        this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
         this.genero = genero;
-        this.estado = estado;
     }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
+    public String getIsbn() { return isbn; }
+    public void setIsbn(String isbn) { this.isbn = isbn; }
 
     public String getTitulo() { return titulo; }
     public void setTitulo(String titulo) { this.titulo = titulo; }
@@ -43,7 +45,4 @@ public class Libro {
 
     public String getGenero() { return genero; }
     public void setGenero(String genero) { this.genero = genero; }
-
-    public EstadoLibro getEstado() { return estado; }
-    public void setEstado(EstadoLibro estado) { this.estado = estado; }
 }

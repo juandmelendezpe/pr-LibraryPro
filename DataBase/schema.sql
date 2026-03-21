@@ -3,6 +3,7 @@
 -- Drop tables if they exist to allow clean re-execution
 DROP TABLE IF EXISTS donacion;
 DROP TABLE IF EXISTS prestamo;
+DROP TABLE IF EXISTS ejemplar;
 DROP TABLE IF EXISTS libro;
 DROP TABLE IF EXISTS usuario;
 DROP TABLE IF EXISTS rol;
@@ -40,9 +41,18 @@ CREATE TABLE usuario (
 -- Create Libro table
 CREATE TABLE libro (
     id SERIAL PRIMARY KEY,
+    isbn VARCHAR(20) UNIQUE,
     titulo VARCHAR(255) NOT NULL,
     autor VARCHAR(100) NOT NULL,
-    genero VARCHAR(50),
+    genero VARCHAR(50)
+);
+
+-- Create Ejemplar table
+CREATE TABLE ejemplar (
+    id SERIAL PRIMARY KEY,
+    libro_id INT REFERENCES libro(id) ON DELETE CASCADE,
+    fec_ingreso DATE NOT NULL DEFAULT CURRENT_DATE,
+    detalle VARCHAR(100),
     estado_id INT REFERENCES estado_libro(id)
 );
 
@@ -53,7 +63,7 @@ CREATE TABLE prestamo (
     fecha_devolucion DATE,
     estado_id INT REFERENCES estado_prestamo(id),
     usuario_id INT REFERENCES usuario(id) ON DELETE CASCADE,
-    libro_id INT REFERENCES libro(id) ON DELETE CASCADE
+    ejemplar_id INT REFERENCES ejemplar(id) ON DELETE CASCADE
 );
 
 -- Create Donacion table
@@ -62,5 +72,5 @@ CREATE TABLE donacion (
     fecha DATE NOT NULL DEFAULT CURRENT_DATE,
     observaciones TEXT,
     usuario_id INT REFERENCES usuario(id) ON DELETE SET NULL,
-    libro_id INT REFERENCES libro(id) ON DELETE CASCADE
+    ejemplar_id INT REFERENCES ejemplar(id) ON DELETE CASCADE
 );

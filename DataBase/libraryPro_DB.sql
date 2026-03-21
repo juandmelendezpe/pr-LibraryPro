@@ -1,38 +1,377 @@
--- Sample Data for LibraryPro (Normalized and Updated)
+-- Sample Data for LibraryPro (Normalized and Generated)
 
 -- Insert Lookup Data
 INSERT INTO rol (titulo) VALUES 
 ('Lector'), ('Responsable'), ('Admin'), ('SuperAdmin');
 
+-- NOTA SOBRE ESTADO LIBRO: 'Donado' se reemplaza aquí por 'Extraviado' o se omite.
+-- Dado que las donaciones son entradas de libros, el libro simplemente está 'Disponible'.
 INSERT INTO estado_libro (descripcion_estado_libro) VALUES 
-('Disponible'), ('Prestado'), ('Donado');
+('Disponible'), ('Prestado'), ('Extraviado'), ('Baja / Dañado');
 
 INSERT INTO estado_prestamo (descripcion_estado_prestamo) VALUES 
 ('Activo'), ('Devuelto');
 
--- Insert Usuarios
+-- Insert Usuarios (Lectores y admins)
 INSERT INTO usuario (nombre, email, password, telefono, direccion, rol_id, activo) VALUES
-('Juan Pérez', 'juan.perez@email.com', NULL, '600111222', 'Calle Falsa 123', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
-('Ana García', 'ana.garcia@email.com', 'secure456', '600333444', 'Avenida Siempre Viva 742', (SELECT id FROM rol WHERE titulo = 'Responsable'), TRUE),
-('Carlos Admin', 'admin@librarypro.com', 'admin789', '600555666', 'Plaza Real 1', (SELECT id FROM rol WHERE titulo = 'Admin'), TRUE),
-('Super User', 'super@librarypro.com', 'supersecret', '600777888', 'Torre de Control 10', (SELECT id FROM rol WHERE titulo = 'SuperAdmin'), TRUE);
+('Ana Administradora', 'admin@librarypro.com', 'admin789', '600000001', 'Plaza Mayor 1', (SELECT id FROM rol WHERE titulo = 'Admin'), TRUE),
+('Super Admin', 'super@librarypro.com', 'super', '600000002', 'Central 1', (SELECT id FROM rol WHERE titulo = 'SuperAdmin'), TRUE),
+('Laura López', 'laura.lópez0@ejemplo.com', 'pwd123', '681008068', 'Calle García 88', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Diego Lozano', 'diego.lozano1@ejemplo.com', 'pwd123', '698708707', 'Calle Pérez 2', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Alberto Díaz', 'alberto.díaz2@ejemplo.com', 'pwd123', '697747657', 'Calle Pérez 87', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Raúl Romero', 'raúl.romero3@ejemplo.com', 'pwd123', '687418798', 'Calle Gutiérrez 71', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Roberto Gil', 'roberto.gil4@ejemplo.com', 'pwd123', '618317879', 'Calle Martín 11', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Jorge Vázquez', 'jorge.vázquez5@ejemplo.com', 'pwd123', '678012518', 'Calle Gómez 40', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Juan Morales', 'juan.morales6@ejemplo.com', 'pwd123', '632694931', 'Calle Ortega 82', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Víctor Gómez', 'víctor.gómez7@ejemplo.com', 'pwd123', '665537534', 'Calle Núñez 36', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Víctor Delgado', 'víctor.delgado8@ejemplo.com', 'pwd123', '621370174', 'Calle Garrido 15', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Víctor Cortes', 'víctor.cortes9@ejemplo.com', 'pwd123', '655331141', 'Calle Prieto 51', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Javier Moreno', 'javier.moreno10@ejemplo.com', 'pwd123', '650520673', 'Calle Domínguez 96', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Silvia López', 'silvia.lópez11@ejemplo.com', 'pwd123', '697351746', 'Calle Cortes 65', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Diego Ortega', 'diego.ortega12@ejemplo.com', 'pwd123', '659186208', 'Calle Ortiz 50', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Sara Hernández', 'sara.hernández13@ejemplo.com', 'pwd123', '656367756', 'Calle Gil 51', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Carmen Cano', 'carmen.cano14@ejemplo.com', 'pwd123', '620403539', 'Calle Molina 28', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('María Medina', 'maría.medina15@ejemplo.com', 'pwd123', '686383308', 'Calle Jiménez 26', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Cristina Molina', 'cristina.molina16@ejemplo.com', 'pwd123', '673323968', 'Calle Alonso 34', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Rubén Fernández', 'rubén.fernández17@ejemplo.com', 'pwd123', '634888553', 'Calle Serrano 70', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Teresa Romero', 'teresa.romero18@ejemplo.com', 'pwd123', '689484037', 'Calle Pérez 49', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Marta Sánchez', 'marta.sánchez19@ejemplo.com', 'pwd123', '625664435', 'Calle Cortes 7', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Diego Ramos', 'diego.ramos20@ejemplo.com', 'pwd123', '610807948', 'Calle Romero 48', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Rosa Vázquez', 'rosa.vázquez21@ejemplo.com', 'pwd123', '698777338', 'Calle Ruiz 60', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Rocío Serrano', 'rocío.serrano22@ejemplo.com', 'pwd123', '681919708', 'Calle Molina 18', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Cristina García', 'cristina.garcía23@ejemplo.com', 'pwd123', '638456632', 'Calle Prieto 20', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Paula Núñez', 'paula.núñez24@ejemplo.com', 'pwd123', '695713626', 'Calle Santos 64', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Alba Pérez', 'alba.pérez25@ejemplo.com', 'pwd123', '694132910', 'Calle Marín 90', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Paula Ramos', 'paula.ramos26@ejemplo.com', 'pwd123', '621638056', 'Calle Iglesias 61', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Sara Medina', 'sara.medina27@ejemplo.com', 'pwd123', '689873000', 'Calle García 20', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Lucía Martínez', 'lucía.martínez28@ejemplo.com', 'pwd123', '680675380', 'Calle González 41', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Alba Gil', 'alba.gil29@ejemplo.com', 'pwd123', '692546256', 'Calle Álvarez 63', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Alejandro Romero', 'alejandro.romero30@ejemplo.com', 'pwd123', '687921918', 'Calle Marín 3', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Elena Vázquez', 'elena.vázquez31@ejemplo.com', 'pwd123', '683553356', 'Calle Núñez 72', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Miguel Vázquez', 'miguel.vázquez32@ejemplo.com', 'pwd123', '632168560', 'Calle González 18', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Alba Marín', 'alba.marín33@ejemplo.com', 'pwd123', '617976196', 'Calle Navarro 83', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Luis Sanz', 'luis.sanz34@ejemplo.com', 'pwd123', '676219030', 'Calle Guerrero 50', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Daniel Guerrero', 'daniel.guerrero35@ejemplo.com', 'pwd123', '610706196', 'Calle Navarro 71', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Beatriz Lozano', 'beatriz.lozano36@ejemplo.com', 'pwd123', '675894193', 'Calle Martín 24', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Víctor Hernández', 'víctor.hernández37@ejemplo.com', 'pwd123', '637150179', 'Calle Vázquez 31', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Patricia Núñez', 'patricia.núñez38@ejemplo.com', 'pwd123', '646700157', 'Calle Delgado 74', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Pablo Martínez', 'pablo.martínez39@ejemplo.com', 'pwd123', '678733426', 'Calle Serrano 28', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Nuria Iglesias', 'nuria.iglesias40@ejemplo.com', 'pwd123', '656838141', 'Calle Vázquez 92', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Teresa Morales', 'teresa.morales41@ejemplo.com', 'pwd123', '626128456', 'Calle Gil 72', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Alberto Álvarez', 'alberto.álvarez42@ejemplo.com', 'pwd123', '619966224', 'Calle Cano 81', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Noelia Díaz', 'noelia.díaz43@ejemplo.com', 'pwd123', '678777146', 'Calle Vázquez 17', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Silvia González', 'silvia.gonzález44@ejemplo.com', 'pwd123', '618260227', 'Calle Alonso 81', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Sara Cortes', 'sara.cortes45@ejemplo.com', 'pwd123', '622262952', 'Calle Delgado 72', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Carlos Medina', 'carlos.medina46@ejemplo.com', 'pwd123', '651833353', 'Calle González 61', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Rubén Pérez', 'rubén.pérez47@ejemplo.com', 'pwd123', '639482988', 'Calle Fernández 55', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Raquel Ortiz', 'raquel.ortiz48@ejemplo.com', 'pwd123', '617841615', 'Calle Guerrero 99', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Beatriz Ortiz', 'beatriz.ortiz49@ejemplo.com', 'pwd123', '690078407', 'Calle Jiménez 51', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE);
 
--- Insert Libros
-INSERT INTO libro (titulo, autor, genero, estado_id) VALUES
-('Cien años de soledad', 'Gabriel García Márquez', 'Realismo Mágico', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
-('Don Quijote de la Mancha', 'Miguel de Cervantes', 'Clásico', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
-('1984', 'George Orwell', 'Distopía', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Prestado')),
-('El Principito', 'Antoine de Saint-Exupéry', 'Infantil', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
-('El Hobbit', 'J.R.R. Tolkien', 'Fantasía', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Donado'));
+-- Insert Libros (100 libros)
+INSERT INTO libro (isbn, titulo, autor, genero) VALUES
+('978-0-734-68258-4', '100 años de soledad', 'Gabriel García Márquez', 'Realismo Mágico'),
+('978-0-710-17643-1', 'Don Quijote de la Mancha', 'Miguel de Cervantes', 'Clásico'),
+('978-0-987-74559-2', '1984', 'George Orwell', 'Distopía'),
+('978-0-337-89248-1', 'El Principito', 'Antoine de Saint-Exupéry', 'Infantil'),
+('978-0-475-20884-5', 'El Hobbit', 'J.R.R. Tolkien', 'Fantasía'),
+('978-0-442-92207-8', 'Orgullo y Prejuicio', 'Jane Austen', 'Romance'),
+('978-0-943-15798-9', 'El Señor de los Anillos', 'J.R.R. Tolkien', 'Fantasía'),
+('978-0-979-99506-6', 'Cumbres Borrascosas', 'Emily Brontë', 'Clásico'),
+('978-0-695-97972-7', 'Crimen y Castigo', 'Fiódor Dostoyevski', 'Ficción Psicológica'),
+('978-0-775-84570-1', 'La Odisea', 'Homero', 'Épico'),
+('978-0-689-83344-6', 'Moby Dick', 'Herman Melville', 'Aventura'),
+('978-0-644-17031-6', 'Matar a un Ruiseñor', 'Harper Lee', 'Ficción Histórica'),
+('978-0-271-70836-1', 'El Gran Gatsby', 'F. Scott Fitzgerald', 'Clásico'),
+('978-0-113-80586-7', 'Guerra y Paz', 'León Tolstói', 'Histórico'),
+('978-0-716-48794-3', 'Ulises', 'James Joyce', 'Modernista'),
+('978-0-933-91877-9', 'Hamlet', 'William Shakespeare', 'Tragedia'),
+('978-0-105-63785-5', 'Fahrenheit 451', 'Ray Bradbury', 'Ciencia Ficción'),
+('978-0-556-57100-5', 'Un Mundo Feliz', 'Aldous Huxley', 'Distopía'),
+('978-0-161-74049-4', 'La Divina Comedia', 'Dante Alighieri', 'Épico'),
+('978-0-728-87882-6', 'Los Miserables', 'Victor Hugo', 'Histórico'),
+('978-0-787-33507-0', 'Madame Bovary', 'Gustave Flaubert', 'Realismo'),
+('978-0-245-27411-9', 'En Busca del Tiempo Perdido', 'Marcel Proust', 'Modernista'),
+('978-0-454-17179-9', 'La Metamorfosis', 'Franz Kafka', 'Absurdo'),
+('978-0-410-36346-3', 'El Conde de Montecristo', 'Alexandre Dumas', 'Aventura'),
+('978-0-519-80954-0', 'Frankenstein', 'Mary Shelley', 'Gótico'),
+('978-0-835-23354-9', 'Drácula', 'Bram Stoker', 'Terror'),
+('978-0-813-68999-8', 'Jane Eyre', 'Charlotte Brontë', 'Romance'),
+('978-0-347-37950-4', 'Siddhartha', 'Hermann Hesse', 'Filosófico'),
+('978-0-844-59301-4', 'El Extranjero', 'Albert Camus', 'Filosófico'),
+('978-0-620-35010-9', 'Ensayo sobre la Ceguera', 'José Saramago', 'Novela'),
+('978-0-572-66896-4', 'La Casa de los Espíritus', 'Isabel Allende', 'Realismo Mágico'),
+('978-0-404-44890-2', 'Ficciones', 'Jorge Luis Borges', 'Cuento'),
+('978-0-513-61657-0', 'Rayuela', 'Julio Cortázar', 'Novela'),
+('978-0-933-37678-5', 'Pedro Páramo', 'Juan Rulfo', 'Realismo Mágico'),
+('978-0-715-79394-1', 'El Aleph', 'Jorge Luis Borges', 'Cuento'),
+('978-0-345-82066-4', 'Crónica de una Muerte Anunciada', 'Gabriel García Márquez', 'Novela'),
+('978-0-993-35289-1', 'La Sombra del Viento', 'Carlos Ruiz Zafón', 'Misterio'),
+('978-0-707-55402-6', 'Los Detectives Salvajes', 'Roberto Bolaño', 'Novela'),
+('978-0-651-56990-7', 'La Ciudad y los Perros', 'Mario Vargas Llosa', 'Novela'),
+('978-0-448-75454-1', '2666', 'Roberto Bolaño', 'Novela'),
+('978-0-143-44680-4', 'El Túnel', 'Ernesto Sabato', 'Filosófico'),
+('978-0-889-36847-3', 'Nada', 'Carmen Laforet', 'Novela'),
+('978-0-578-40366-9', 'Niebla', 'Miguel de Unamuno', 'Novela'),
+('978-0-260-11439-6', 'Las Crónicas de Narnia', 'C.S. Lewis', 'Fantasía'),
+('978-0-586-63985-9', 'Harry Potter y la Piedra Filosofal', 'J.K. Rowling', 'Fantasía'),
+('978-0-459-85494-1', 'Los Juegos del Hambre', 'Suzanne Collins', 'Ciencia Ficción'),
+('978-0-382-60843-3', 'Dune', 'Frank Herbert', 'Ciencia Ficción'),
+('978-0-490-38570-1', 'Fundación', 'Isaac Asimov', 'Ciencia Ficción'),
+('978-0-453-19377-7', 'Cien Años de Perdón', 'Jorge Fernández', 'Thriller'),
+('978-0-855-96013-3', 'El Nombre de la Rosa', 'Umberto Eco', 'Misterio Histórico'),
+('978-0-114-21874-0', 'Libro Genérico Vol 50', 'Autor Desconocido', 'Variado'),
+('978-0-738-30438-9', 'Libro Genérico Vol 51', 'Autor Desconocido', 'Variado'),
+('978-0-788-95045-2', 'Libro Genérico Vol 52', 'Autor Desconocido', 'Variado'),
+('978-0-881-51966-3', 'Libro Genérico Vol 53', 'Autor Desconocido', 'Variado'),
+('978-0-778-80909-8', 'Libro Genérico Vol 54', 'Autor Desconocido', 'Variado'),
+('978-0-402-13926-8', 'Libro Genérico Vol 55', 'Autor Desconocido', 'Variado'),
+('978-0-554-78693-8', 'Libro Genérico Vol 56', 'Autor Desconocido', 'Variado'),
+('978-0-177-93500-1', 'Libro Genérico Vol 57', 'Autor Desconocido', 'Variado'),
+('978-0-397-33361-9', 'Libro Genérico Vol 58', 'Autor Desconocido', 'Variado'),
+('978-0-963-62682-6', 'Libro Genérico Vol 59', 'Autor Desconocido', 'Variado'),
+('978-0-928-58226-8', 'Libro Genérico Vol 60', 'Autor Desconocido', 'Variado'),
+('978-0-925-46284-0', 'Libro Genérico Vol 61', 'Autor Desconocido', 'Variado'),
+('978-0-735-24684-3', 'Libro Genérico Vol 62', 'Autor Desconocido', 'Variado'),
+('978-0-168-84956-6', 'Libro Genérico Vol 63', 'Autor Desconocido', 'Variado'),
+('978-0-678-12225-0', 'Libro Genérico Vol 64', 'Autor Desconocido', 'Variado'),
+('978-0-996-12581-4', 'Libro Genérico Vol 65', 'Autor Desconocido', 'Variado'),
+('978-0-260-35536-4', 'Libro Genérico Vol 66', 'Autor Desconocido', 'Variado'),
+('978-0-810-24994-3', 'Libro Genérico Vol 67', 'Autor Desconocido', 'Variado'),
+('978-0-550-15362-8', 'Libro Genérico Vol 68', 'Autor Desconocido', 'Variado'),
+('978-0-792-48532-1', 'Libro Genérico Vol 69', 'Autor Desconocido', 'Variado'),
+('978-0-654-85158-3', 'Libro Genérico Vol 70', 'Autor Desconocido', 'Variado'),
+('978-0-961-88996-9', 'Libro Genérico Vol 71', 'Autor Desconocido', 'Variado'),
+('978-0-205-64046-4', 'Libro Genérico Vol 72', 'Autor Desconocido', 'Variado'),
+('978-0-316-13684-9', 'Libro Genérico Vol 73', 'Autor Desconocido', 'Variado'),
+('978-0-933-43016-1', 'Libro Genérico Vol 74', 'Autor Desconocido', 'Variado'),
+('978-0-576-46517-3', 'Libro Genérico Vol 75', 'Autor Desconocido', 'Variado'),
+('978-0-894-58081-1', 'Libro Genérico Vol 76', 'Autor Desconocido', 'Variado'),
+('978-0-349-24653-0', 'Libro Genérico Vol 77', 'Autor Desconocido', 'Variado'),
+('978-0-283-59144-4', 'Libro Genérico Vol 78', 'Autor Desconocido', 'Variado'),
+('978-0-548-90150-0', 'Libro Genérico Vol 79', 'Autor Desconocido', 'Variado'),
+('978-0-406-98363-6', 'Libro Genérico Vol 80', 'Autor Desconocido', 'Variado'),
+('978-0-973-14370-1', 'Libro Genérico Vol 81', 'Autor Desconocido', 'Variado'),
+('978-0-802-47838-2', 'Libro Genérico Vol 82', 'Autor Desconocido', 'Variado'),
+('978-0-849-69030-5', 'Libro Genérico Vol 83', 'Autor Desconocido', 'Variado'),
+('978-0-776-66385-2', 'Libro Genérico Vol 84', 'Autor Desconocido', 'Variado'),
+('978-0-562-40708-0', 'Libro Genérico Vol 85', 'Autor Desconocido', 'Variado'),
+('978-0-194-33732-1', 'Libro Genérico Vol 86', 'Autor Desconocido', 'Variado'),
+('978-0-481-29929-9', 'Libro Genérico Vol 87', 'Autor Desconocido', 'Variado'),
+('978-0-112-34951-3', 'Libro Genérico Vol 88', 'Autor Desconocido', 'Variado'),
+('978-0-244-62835-7', 'Libro Genérico Vol 89', 'Autor Desconocido', 'Variado'),
+('978-0-973-84021-7', 'Libro Genérico Vol 90', 'Autor Desconocido', 'Variado'),
+('978-0-343-56415-1', 'Libro Genérico Vol 91', 'Autor Desconocido', 'Variado'),
+('978-0-358-40957-5', 'Libro Genérico Vol 92', 'Autor Desconocido', 'Variado'),
+('978-0-769-79165-7', 'Libro Genérico Vol 93', 'Autor Desconocido', 'Variado'),
+('978-0-997-32703-9', 'Libro Genérico Vol 94', 'Autor Desconocido', 'Variado'),
+('978-0-168-95517-0', 'Libro Genérico Vol 95', 'Autor Desconocido', 'Variado'),
+('978-0-249-64113-3', 'Libro Genérico Vol 96', 'Autor Desconocido', 'Variado'),
+('978-0-203-53976-6', 'Libro Genérico Vol 97', 'Autor Desconocido', 'Variado'),
+('978-0-603-46523-3', 'Libro Genérico Vol 98', 'Autor Desconocido', 'Variado'),
+('978-0-744-11716-6', 'Libro Genérico Vol 99', 'Autor Desconocido', 'Variado');
 
--- Insert Prestamos
-INSERT INTO prestamo (fecha_inicio, fecha_devolucion, estado_id, usuario_id, libro_id) VALUES
-('2024-03-01', NULL, (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), 
- (SELECT id FROM usuario WHERE email = 'juan.perez@email.com'), 
- (SELECT id FROM libro WHERE titulo = '1984'));
+-- Insert Ejemplares (1 ejemplar por libro por defecto, para un total de 100)
+INSERT INTO ejemplar (libro_id, fec_ingreso, detalle, estado_id) VALUES
+((SELECT id FROM libro WHERE titulo = '100 años de soledad' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Don Quijote de la Mancha' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = '1984' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'El Principito' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'El Hobbit' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Orgullo y Prejuicio' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'El Señor de los Anillos' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Cumbres Borrascosas' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Crimen y Castigo' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'La Odisea' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Moby Dick' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Matar a un Ruiseñor' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'El Gran Gatsby' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Guerra y Paz' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Ulises' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Hamlet' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Fahrenheit 451' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Un Mundo Feliz' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'La Divina Comedia' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Los Miserables' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Madame Bovary' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'En Busca del Tiempo Perdido' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'La Metamorfosis' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'El Conde de Montecristo' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Frankenstein' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Drácula' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Jane Eyre' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Siddhartha' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'El Extranjero' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Ensayo sobre la Ceguera' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'La Casa de los Espíritus' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Ficciones' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Rayuela' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Pedro Páramo' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'El Aleph' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Crónica de una Muerte Anunciada' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'La Sombra del Viento' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Los Detectives Salvajes' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'La Ciudad y los Perros' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = '2666' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'El Túnel' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Nada' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Niebla' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Las Crónicas de Narnia' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Harry Potter y la Piedra Filosofal' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Los Juegos del Hambre' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Dune' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Fundación' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Cien Años de Perdón' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'El Nombre de la Rosa' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 50' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 51' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 52' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 53' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 54' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 55' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 56' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 57' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 58' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 59' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 60' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 61' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 62' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 63' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 64' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 65' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 66' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 67' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 68' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 69' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 70' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 71' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 72' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 73' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 74' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 75' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 76' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 77' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 78' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 79' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 80' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 81' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 82' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 83' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 84' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 85' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 86' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 87' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 88' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 89' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 90' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 91' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 92' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 93' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 94' LIMIT 1), '2023-01-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 95' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 96' LIMIT 1), '2023-01-01', 'Usado - Buen estado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 97' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 98' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 99' LIMIT 1), '2023-01-01', 'Usado - Marcas menores', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible'));
 
--- Insert Donaciones
-INSERT INTO donacion (fecha, observaciones, usuario_id, libro_id) VALUES
-('2024-03-10', 'Donación de libro nuevo en excelentes condiciones.', 
- (SELECT id FROM usuario WHERE email = 'ana.garcia@email.com'), 
- (SELECT id FROM libro WHERE titulo = 'El Hobbit'));
+-- Insert Donaciones (50 donaciones asociadas a los primeros 50 ejemplares)
+INSERT INTO donacion (fecha, observaciones, usuario_id, ejemplar_id) VALUES
+('2023-01-10', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'patricia.núñez38@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = '100 años de soledad' LIMIT 1)),
+('2023-02-24', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'sara.medina27@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Don Quijote de la Mancha' LIMIT 1)),
+('2023-03-01', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'diego.ortega12@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = '1984' LIMIT 1)),
+('2023-04-26', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'beatriz.lozano36@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'El Principito' LIMIT 1)),
+('2023-05-12', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'rubén.pérez47@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'El Hobbit' LIMIT 1)),
+('2023-06-13', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'luis.sanz34@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Orgullo y Prejuicio' LIMIT 1)),
+('2023-07-25', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'rubén.fernández17@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'El Señor de los Anillos' LIMIT 1)),
+('2023-08-03', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'daniel.guerrero35@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Cumbres Borrascosas' LIMIT 1)),
+('2023-09-07', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'pablo.martínez39@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Crimen y Castigo' LIMIT 1)),
+('2023-10-02', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'javier.moreno10@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'La Odisea' LIMIT 1)),
+('2023-11-08', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'alba.marín33@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Moby Dick' LIMIT 1)),
+('2023-12-17', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'pablo.martínez39@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Matar a un Ruiseñor' LIMIT 1)),
+('2023-01-20', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'jorge.vázquez5@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'El Gran Gatsby' LIMIT 1)),
+('2023-02-24', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'carlos.medina46@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Guerra y Paz' LIMIT 1)),
+('2023-03-24', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'pablo.martínez39@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Ulises' LIMIT 1)),
+('2023-04-06', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'javier.moreno10@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Hamlet' LIMIT 1)),
+('2023-05-09', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'jorge.vázquez5@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Fahrenheit 451' LIMIT 1)),
+('2023-06-10', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'nuria.iglesias40@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Un Mundo Feliz' LIMIT 1)),
+('2023-07-01', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'alba.marín33@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'La Divina Comedia' LIMIT 1)),
+('2023-08-25', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'roberto.gil4@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Los Miserables' LIMIT 1)),
+('2023-09-03', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'diego.ramos20@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Madame Bovary' LIMIT 1)),
+('2023-10-20', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'víctor.delgado8@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'En Busca del Tiempo Perdido' LIMIT 1)),
+('2023-11-28', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'diego.lozano1@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'La Metamorfosis' LIMIT 1)),
+('2023-12-17', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'sara.hernández13@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'El Conde de Montecristo' LIMIT 1)),
+('2023-01-18', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'teresa.morales41@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Frankenstein' LIMIT 1)),
+('2023-02-13', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'daniel.guerrero35@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Drácula' LIMIT 1)),
+('2023-03-22', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'jorge.vázquez5@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Jane Eyre' LIMIT 1)),
+('2023-04-04', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'diego.ramos20@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Siddhartha' LIMIT 1)),
+('2023-05-24', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'pablo.martínez39@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'El Extranjero' LIMIT 1)),
+('2023-06-24', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'raquel.ortiz48@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Ensayo sobre la Ceguera' LIMIT 1)),
+('2023-07-14', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'beatriz.lozano36@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'La Casa de los Espíritus' LIMIT 1)),
+('2023-08-14', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'víctor.hernández37@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Ficciones' LIMIT 1)),
+('2023-09-14', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'jorge.vázquez5@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Rayuela' LIMIT 1)),
+('2023-10-17', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'víctor.gómez7@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Pedro Páramo' LIMIT 1)),
+('2023-11-11', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'diego.lozano1@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'El Aleph' LIMIT 1)),
+('2023-12-24', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'luis.sanz34@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Crónica de una Muerte Anunciada' LIMIT 1)),
+('2023-01-12', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'alberto.álvarez42@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'La Sombra del Viento' LIMIT 1)),
+('2023-02-21', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'beatriz.ortiz49@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Los Detectives Salvajes' LIMIT 1)),
+('2023-03-14', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'rosa.vázquez21@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'La Ciudad y los Perros' LIMIT 1)),
+('2023-04-07', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'juan.morales6@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = '2666' LIMIT 1)),
+('2023-05-05', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'miguel.vázquez32@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'El Túnel' LIMIT 1)),
+('2023-06-20', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'noelia.díaz43@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Nada' LIMIT 1)),
+('2023-07-15', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'sara.hernández13@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Niebla' LIMIT 1)),
+('2023-08-14', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'juan.morales6@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Las Crónicas de Narnia' LIMIT 1)),
+('2023-09-04', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'beatriz.lozano36@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Harry Potter y la Piedra Filosofal' LIMIT 1)),
+('2023-10-12', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'alba.gil29@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Los Juegos del Hambre' LIMIT 1)),
+('2023-11-04', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'rubén.pérez47@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Dune' LIMIT 1)),
+('2023-12-09', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'jorge.vázquez5@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Fundación' LIMIT 1)),
+('2023-01-11', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'elena.vázquez31@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Cien Años de Perdón' LIMIT 1)),
+('2023-02-04', 'Donado por usuario', (SELECT id FROM usuario WHERE email = 'teresa.romero18@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'El Nombre de la Rosa' LIMIT 1));
+
+-- Insert Prestamos (10 préstamos)
+INSERT INTO prestamo (fecha_inicio, fecha_devolucion, estado_id, usuario_id, ejemplar_id) VALUES
+('2024-01-22', NULL, (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), (SELECT id FROM usuario WHERE email = 'carlos.medina46@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Libro Genérico Vol 50' LIMIT 1)),
+('2024-02-08', NULL, (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), (SELECT id FROM usuario WHERE email = 'lucía.martínez28@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Libro Genérico Vol 51' LIMIT 1)),
+('2024-03-24', NULL, (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), (SELECT id FROM usuario WHERE email = 'víctor.hernández37@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Libro Genérico Vol 52' LIMIT 1)),
+('2024-01-20', NULL, (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), (SELECT id FROM usuario WHERE email = 'sara.cortes45@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Libro Genérico Vol 53' LIMIT 1)),
+('2024-02-08', NULL, (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), (SELECT id FROM usuario WHERE email = 'beatriz.lozano36@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Libro Genérico Vol 54' LIMIT 1)),
+('2024-02-03', NULL, (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), (SELECT id FROM usuario WHERE email = 'miguel.vázquez32@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Libro Genérico Vol 55' LIMIT 1)),
+('2024-03-18', NULL, (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), (SELECT id FROM usuario WHERE email = 'beatriz.ortiz49@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Libro Genérico Vol 56' LIMIT 1)),
+('2024-03-26', NULL, (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), (SELECT id FROM usuario WHERE email = 'laura.lópez0@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Libro Genérico Vol 57' LIMIT 1)),
+('2024-03-19', '2024-03-28', (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Devuelto'), (SELECT id FROM usuario WHERE email = 'rubén.fernández17@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Libro Genérico Vol 58' LIMIT 1)),
+('2024-01-20', NULL, (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), (SELECT id FROM usuario WHERE email = 'raúl.romero3@ejemplo.com'), (SELECT ejemplar.id FROM ejemplar INNER JOIN libro ON ejemplar.libro_id = libro.id WHERE libro.titulo = 'Libro Genérico Vol 59' LIMIT 1));
+
+-- Actualizar estado de los ejemplares a 'Prestado' para los préstamos activos
+UPDATE ejemplar SET estado_id = (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Prestado')
+WHERE id IN (SELECT ejemplar_id FROM prestamo WHERE estado_id = (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'));
+
+-- Bloque anónimo para insertar 4 ejemplares de "El Principito" y sus donaciones
+DO $$
+DECLARE
+    v_libro_id INT;
+    v_estado_id INT;
+    v_usuario_id INT;
+    v_ejemplar_id INT;
+BEGIN
+    -- Obtenemos IDs necesarios
+    SELECT id INTO v_libro_id FROM libro WHERE titulo = 'El Principito' LIMIT 1;
+    SELECT id INTO v_estado_id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible';
+    SELECT id INTO v_usuario_id FROM usuario WHERE email = 'super@librarypro.com';
+
+    -- Insertamos 2 Nuevos
+    FOR i IN 1..2 LOOP
+        INSERT INTO ejemplar (libro_id, fec_ingreso, detalle, estado_id) 
+        VALUES (v_libro_id, CURRENT_DATE, 'Nuevo', v_estado_id) RETURNING id INTO v_ejemplar_id;
+        
+        INSERT INTO donacion (fecha, observaciones, usuario_id, ejemplar_id)
+        VALUES (CURRENT_DATE, 'Agregado por Super Admin', v_usuario_id, v_ejemplar_id);
+    END LOOP;
+
+    -- Insertamos 2 Usados
+    FOR i IN 1..2 LOOP
+        INSERT INTO ejemplar (libro_id, fec_ingreso, detalle, estado_id) 
+        VALUES (v_libro_id, CURRENT_DATE, 'Usado', v_estado_id) RETURNING id INTO v_ejemplar_id;
+        
+        INSERT INTO donacion (fecha, observaciones, usuario_id, ejemplar_id)
+        VALUES (CURRENT_DATE, 'Agregado por Super Admin', v_usuario_id, v_ejemplar_id);
+    END LOOP;
+END $$;
+

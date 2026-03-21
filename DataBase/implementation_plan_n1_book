@@ -1,0 +1,49 @@
+# Refactorización de la base de datos: Normalización de Libro y Ejemplar
+
+Se requiere normalizar la tabla `Libro` para separar los datos de la obra del catálogo general de la información específica de cada ejemplar físico.
+
+## Cambios Propuestos
+
+### Archivos de Base de Datos y Documentación
+
+#### [MODIFY] [schema.sql](file:///c:/Users/juand/Documents/gitHub-juanmp/pr-LibraryPro/DataBase/schema.sql) (file:///c:/Users/juand/Documents/gitHub-juanmp/pr-LibraryPro/DataBase/schema.sql)
+- Modificar la tabla `libro`:
+  - Agregar `isbn VARCHAR(20)`.
+  - Eliminar `estado_id` (se mueve al ejemplar).
+- Crear nueva tabla `ejemplar`:
+  - `id SERIAL PRIMARY KEY` (que actuará como inventario_id).
+  - `libro_id INT REFERENCES libro(id)`.
+  - `fec_ingreso DATE`.
+  - `detalle VARCHAR(100)` (para registrar 'Nuevo', 'Usado', etc.).
+  - `estado_id INT REFERENCES estado_libro(id)`.
+- Modificar la tabla `prestamo`:
+  - Cambiar `libro_id` por `ejemplar_id INT REFERENCES ejemplar(id)`.
+- Modificar la tabla `donacion`:
+  - Cambiar `libro_id` por `ejemplar_id INT REFERENCES ejemplar(id)`.
+
+#### [MODIFY] [libraryPro_DB.sql](file:///c:/Users/juand/Documents/gitHub-juanmp/pr-LibraryPro/DataBase/libraryPro_DB.sql) (file:///c:/Users/juand/Documents/gitHub-juanmp/pr-LibraryPro/DataBase/libraryPro_DB.sql)
+- Actualizar los inserts de `libro` para eliminar `estado_id` y agregar `isbn` genéricos.
+- Agregar inserts para la nueva tabla `ejemplar` asignando los estados, detalles y vinculándolos con los libros.
+- Actualizar los inserts de `prestamo` y `donacion` para que apunten o obtengan los ids desde la tabla `ejemplar`.
+
+#### [MODIFY] [diagramas_proyecto.md](file:///c:/Users/juand/Documents/gitHub-juanmp/pr-LibraryPro/DataBase/diagramas_proyecto.md) (file:///c:/Users/juand/Documents/gitHub-juanmp/pr-LibraryPro/DataBase/diagramas_proyecto.md)
+- Actualizar "Diagrama Entidad-Relación (ER)" para incluir la entidad `EJEMPLAR`, ajustar sus atributos y las relaciones con `PRESTAMO` y `DONACION`.
+- Actualizar "Diagrama de Clases" añadiendo la clase `Ejemplar` y ajustando la relación entre `Usuario`, `Ejemplar`, `Prestamo` y `Donacion`.
+
+## User Review Required
+
+> [!WARNING]
+> Ten en cuenta que estos cambios en la base de datos requerirán modificaciones en tu código backend de **Spring Boot** (en la carpeta `AppBack`):
+> 1. Necesitarás crear una nueva clase Entity `Ejemplar`.
+> 2. Modificar la Entity `Libro` (eliminar estado, agregar lista de ejemplares).
+> 3. Refactorizar `Prestamo` y `Donacion` para vincular a `Ejemplar`.
+> 4. Actualizar Repositories, Services y Controllers afectados.
+> 5. Actualizar el Frontend de Angular (`AppFrond`) para mostrar la nueva estructura de datos.
+>
+> ¿Quieres que proceda únicamente con las modificaciones a nivel de base de datos y diagramas por ahora (tal como ofrecí), o prefieres que también intente mapear los cambios en el código Java del backend?
+
+## Verification Plan
+
+### Manual Verification
+1. Abrir [schema.sql](file:///c:/Users/juand/Documents/gitHub-juanmp/pr-LibraryPro/DataBase/schema.sql) y [libraryPro_DB.sql](file:///c:/Users/juand/Documents/gitHub-juanmp/pr-LibraryPro/DataBase/libraryPro_DB.sql) para chequear que la sintaxis sea válida.
+2. Comprobar que los diagramas de Mermaid se renderizan correctamente en Github/IDE.

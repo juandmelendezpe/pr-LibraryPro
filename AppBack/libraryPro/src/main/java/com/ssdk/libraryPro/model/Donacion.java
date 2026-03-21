@@ -21,17 +21,17 @@ public class Donacion {
     private Usuario donante;
 
     @ManyToOne
-    @JoinColumn(name = "libro_id")
-    private Libro libro;
+    @JoinColumn(name = "ejemplar_id")
+    private Ejemplar ejemplar;
 
     public Donacion() {}
 
-    public Donacion(Long id, LocalDate fecha, String observaciones, Usuario donante, Libro libro) {
+    public Donacion(Long id, LocalDate fecha, String observaciones, Usuario donante, Ejemplar ejemplar) {
         this.id = id;
         this.fecha = fecha != null ? fecha : LocalDate.now();
         this.observaciones = observaciones;
         this.donante = donante;
-        this.libro = libro;
+        this.ejemplar = ejemplar;
     }
 
     public Long getId() { return id; }
@@ -46,6 +46,6 @@ public class Donacion {
     public Usuario getDonante() { return donante; }
     public void setDonante(Usuario donante) { this.donante = donante; }
 
-    public Libro getLibro() { return libro; }
-    public void setLibro(Libro libro) { this.libro = libro; }
+    public Ejemplar getEjemplar() { return ejemplar; }
+    public void setEjemplar(Ejemplar ejemplar) { this.ejemplar = ejemplar; }
 }

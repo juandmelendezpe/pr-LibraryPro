@@ -9,8 +9,9 @@ Este diagrama representa la estructura de la base de datos y cómo se relacionan
 erDiagram
     USUARIO ||--o{ PRESTAMO : realiza
     USUARIO ||--o{ DONACION : realiza
-    LIBRO ||--o{ PRESTAMO : involucra
-    LIBRO ||--o{ DONACION : involucra
+    LIBRO ||--o{ EJEMPLAR : tiene
+    EJEMPLAR ||--o{ PRESTAMO : involucra
+    EJEMPLAR ||--o{ DONACION : involucra
     USUARIO {
         int id PK
         string nombre
@@ -23,9 +24,16 @@ erDiagram
     }
     LIBRO {
         int id PK
+        string isbn "Unique"
         string titulo
         string autor
         string genero
+    }
+    EJEMPLAR {
+        int id PK
+        int libro_id FK
+        date fec_ingreso
+        string detalle "Nuevo, Usado, etc."
         string estado "Disponible, Prestado, Donado"
     }
     PRESTAMO {
@@ -34,14 +42,14 @@ erDiagram
         date fecha_devolucion
         string estado "Activo, Devuelto"
         int usuario_id FK
-        int libro_id FK
+        int ejemplar_id FK
     }
     DONACION {
         int id PK
         date fecha
         string observaciones
         int usuario_id FK
-        int libro_id FK
+        int ejemplar_id FK
     }
 ```
 
@@ -64,29 +72,40 @@ classDiagram
     }
     class Libro {
         +Long id
+        +String isbn
         +String titulo
         +String autor
         +String genero
+        +List~Ejemplar~ ejemplares
+    }
+    class Ejemplar {
+        +Long id
+        +Libro libro
+        +Date fecIngreso
+        +String detalle
         +String estado
+        +List~Prestamo~ prestamos
+        +List~Donacion~ donaciones
     }
     class Prestamo {
         +Long id
         +Date fechaInicio
         +Date fechaDevolucion
         +Usuario prestatario
-        +Libro libro
+        +Ejemplar ejemplar
     }
     class Donacion {
         +Long id
         +Date fecha
         +Usuario donante
-        +Libro libro
+        +Ejemplar ejemplar
     }
 
     Usuario "1" *-- "0..*" Prestamo
     Usuario "1" *-- "0..*" Donacion
-    Libro "1" -- "0..*" Prestamo
-    Libro "1" -- "0..*" Donacion
+    Libro "1" *-- "0..*" Ejemplar
+    Ejemplar "1" -- "0..*" Prestamo
+    Ejemplar "1" -- "0..*" Donacion
 ```
 
 ---

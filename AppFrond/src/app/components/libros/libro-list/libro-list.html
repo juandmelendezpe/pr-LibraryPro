@@ -37,23 +37,23 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let libro of libros">
-        <td>{{ libro.id }}</td>
-        <td><strong>{{ libro.titulo }}</strong></td>
-        <td>{{ libro.autor }}</td>
-        <td>{{ libro.genero }}</td>
+      <tr *ngFor="let item of ejemplares">
+        <td>{{ item.id }}</td>
+        <td><strong>{{ item.libro.titulo }}</strong></td>
+        <td>{{ item.libro.autor }}</td>
+        <td>{{ item.libro.genero }}</td>
         <td>
-          <span [class]="'badge badge-' + libro.estado.descripcion.toLowerCase()">
-            {{ libro.estado.descripcion }}
+          <span [class]="'badge badge-' + item.estado.descripcion.toLowerCase()">
+            {{ item.estado.descripcion }}
           </span>
         </td>
         <td>
           <button class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">Editar</button>
         </td>
       </tr>
-      <tr *ngIf="libros.length === 0">
+      <tr *ngIf="ejemplares.length === 0">
         <td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">
-          No se encontraron libros.
+          No se encontraron ejemplares.
         </td>
       </tr>
     </tbody>

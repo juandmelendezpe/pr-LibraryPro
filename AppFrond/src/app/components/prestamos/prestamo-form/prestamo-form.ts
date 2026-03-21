@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PrestamoService } from '../../../services/prestamo.service';
 import { UsuarioService } from '../../../services/usuario.service';
-import { LibroService } from '../../../services/libro.service';
-import { Libro } from '../../../models/models';
+import { EjemplarService } from '../../../services/ejemplar.service';
+import { Ejemplar } from '../../../models/models';
 
 @Component({
   selector: 'app-prestamo-form',
@@ -17,21 +17,21 @@ export class PrestamoFormComponent implements OnInit {
     fechaInicio: new Date().toISOString().split('T')[0],
     fechaDevolucion: '',
     prestatario: { nombre: '', email: '', rol: { titulo: 'Lector' }, activo: true },
-    libro: { id: undefined, titulo: '', autor: '', estado: { descripcion: '' } }
+    ejemplar: { id: undefined, libro: { titulo: '', autor: '' }, estado: { descripcion: '' } }
   };
   
   usuarioNuevo = false;
-  librosDisponibles: Libro[] = [];
+  ejemplaresDisponibles: Ejemplar[] = [];
 
   constructor(
     private prestamoService: PrestamoService,
     private usuarioService: UsuarioService,
-    private libroService: LibroService
+    private ejemplarService: EjemplarService
   ) { }
 
   ngOnInit(): void {
-    this.libroService.listarTodos().subscribe(data => {
-      this.librosDisponibles = data.filter(l => l.estado.descripcion === 'Disponible');
+    this.ejemplarService.listarTodos().subscribe(data => {
+      this.ejemplaresDisponibles = data.filter(e => e.estado.descripcion === 'Disponible');
     });
   }
 

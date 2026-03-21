@@ -16,7 +16,7 @@ export class DonacionFormComponent implements OnInit {
     fecha: new Date().toISOString().split('T')[0],
     observaciones: '',
     donante: { nombre: '', email: '', rol: { titulo: 'Lector' }, activo: true },
-    libro: { titulo: '', autor: '', genero: '', estado: { descripcion: 'Disponible' } }
+    ejemplar: { libro: { titulo: '', autor: '', genero: '' }, estado: { id: 1, descripcion: 'Disponible' }, detalle: 'Nuevo' }
   };
   
   usuarioNuevo = false;
