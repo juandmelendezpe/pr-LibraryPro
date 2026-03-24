@@ -1,0 +1,76 @@
+<div class="flex flex-col w-[80%] max-w-2xl mx-auto justify-center gap-4 mb-[2%] mt-1 items-stretch">
+  
+  <div class="w-full glass rounded-xl overflow-hidden shadow-2xl border-purple flex flex-col">
+    <div class="h-10 flex items-center px-4 bg-slate-900/60 border-b border-white/20">
+      <div class="flex gap-2">
+        <div class="w-3 h-3 rounded-full bg-red-500 hover:opacity-80 cursor-pointer"></div>
+        <div class="w-3 h-3 rounded-full bg-yellow-500 hover:opacity-80 cursor-pointer"></div>
+        <div class="w-3 h-3 rounded-full bg-green-500 hover:opacity-80 cursor-pointer"></div>
+      </div>
+      <div class="flex-1 text-center text-white text-sm font-semibold mr-10 drop-shadow-md">Crear Nuevo Perfil Lector</div>
+    </div>
+    
+    <div class="p-6">
+      <form (ngSubmit)="guardarUsuario()">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
+          <!-- Nombre Completo -->
+          <div class="md:col-span-2">
+            <label class="block text-slate-200 text-xs font-bold mb-2 uppercase flex items-center gap-1">
+              Nombre Completo <span class="text-red-400">*</span>
+            </label>
+            <input type="text" name="nombre" [(ngModel)]="usuario.nombre" placeholder="Ej. Juan Pérez" required
+                   class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 px-4 py-2 rounded-lg focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all text-sm">
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label class="block text-slate-200 text-xs font-bold mb-2 uppercase flex items-center gap-1">
+              Correo Electrónico <span class="text-red-400">*</span>
+            </label>
+            <input type="email" name="email" [(ngModel)]="usuario.email" placeholder="correo@ejemplo.com" required
+                   class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 px-4 py-2 rounded-lg focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all text-sm">
+          </div>
+
+          <!-- Teléfono -->
+          <div>
+            <label class="block text-slate-200 text-xs font-bold mb-2 uppercase flex items-center gap-1">
+              Teléfono <span class="text-red-400">*</span>
+            </label>
+            <input type="text" name="telefono" [(ngModel)]="usuario.telefono" placeholder="Número de contacto" required
+                   class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 px-4 py-2 rounded-lg focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all text-sm">
+          </div>
+
+          <!-- Dirección -->
+          <div class="md:col-span-2">
+            <label class="block text-slate-200 text-xs font-bold mb-2 uppercase">Dirección (Opcional)</label>
+            <input type="text" name="direccion" [(ngModel)]="usuario.direccion" placeholder="Dirección de residencia"
+                   class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 px-4 py-2 rounded-lg focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all text-sm">
+          </div>
+
+          <!-- Contraseña -->
+          <div class="md:col-span-2">
+            <label class="block text-slate-200 text-xs font-bold mb-2 uppercase">Contraseña para acceso (Opcional)</label>
+            <input type="text" name="contrasena" [(ngModel)]="usuario.contrasena" placeholder="Generar una contraseña"
+                   class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 px-4 py-2 rounded-lg focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all text-sm">
+          </div>
+        </div>
+
+        <hr class="border-white/10 my-4">
+
+        <div class="flex gap-4">
+          <button type="submit" [disabled]="guardando"
+                  class="flex-1 bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg">
+            Guadar Perfil
+          </button>
+          <button type="button" (click)="cancelar()"
+                  class="bg-white/10 hover:bg-white/20 text-white font-bold py-2 px-6 rounded-lg transition-colors text-sm border border-white/20 flex items-center justify-center gap-2">
+            Cancelar
+          </button>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+
+</div>

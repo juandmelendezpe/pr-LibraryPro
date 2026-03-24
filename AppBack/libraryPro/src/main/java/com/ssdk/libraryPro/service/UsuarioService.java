@@ -31,6 +31,11 @@ public class UsuarioService {
         return usuarioRepository.findByEmail(email);
     }
 
+    @Transactional(readOnly = true)
+    public List<Usuario> buscarUsuario(String termino) {
+        return usuarioRepository.buscarPorNombreEmailOTelefono(termino);
+    }
+
     @Transactional
     public Usuario guardar(Usuario usuario) {
         return usuarioRepository.save(usuario);

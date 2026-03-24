@@ -23,6 +23,10 @@ export class UsuarioService {
     return this.http.post<Usuario>(this.apiUrl, usuario);
   }
 
+  buscarUsuario(termino: string): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.apiUrl}/buscar?termino=${termino}`);
+  }
+
   eliminar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }

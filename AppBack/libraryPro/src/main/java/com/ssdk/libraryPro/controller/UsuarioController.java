@@ -29,6 +29,11 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/buscar")
+    public List<Usuario> buscarUsuario(@RequestParam String termino) {
+        return usuarioService.buscarUsuario(termino);
+    }
+
     @PostMapping
     public Usuario guardar(@RequestBody Usuario usuario) {
         return usuarioService.guardar(usuario);
