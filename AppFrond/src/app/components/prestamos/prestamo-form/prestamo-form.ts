@@ -26,6 +26,10 @@ export class PrestamoFormComponent implements OnInit {
   usuarioSeleccionado = false;
   ejemplaresDisponibles: Ejemplar[] = [];
   ultimosPrestamos: any[] = [];
+  
+  terminoEjemplar: string = '';
+  ejemplaresFiltrados: Ejemplar[] = [];
+  mostrarDropdownEjemplares: boolean = false;
 
   constructor(
     private prestamoService: PrestamoService,
@@ -37,6 +41,7 @@ export class PrestamoFormComponent implements OnInit {
   ngOnInit(): void {
     this.ejemplarService.listarTodos().subscribe(data => {
       this.ejemplaresDisponibles = data.filter(e => e.estado.descripcion === 'Disponible');
+      this.ejemplaresFiltrados = [...this.ejemplaresDisponibles];
     });
     this.cargarUltimosPrestamos();
   }
@@ -55,6 +60,25 @@ export class PrestamoFormComponent implements OnInit {
     const partes = nombre.trim().split(' ');
     if (partes.length === 1) return partes[0].substring(0, 2).toUpperCase();
     return (partes[0][0] + partes[partes.length - 1][0]).toUpperCase();
+  }
+
+  filtrarEjemplares(event: any): void {
+    const valor = event.target.value.toLowerCase();
+    this.ejemplaresFiltrados = this.ejemplaresDisponibles.filter(ej => 
+      (ej.libro?.titulo?.toLowerCase() || '').includes(valor) || 
+      String(ej.id).includes(valor)
+    );
+    this.mostrarDropdownEjemplares = true;
+  }
+
+  seleccionarEjemplar(ej: Ejemplar): void {
+    this.prestamo.ejemplar.id = ej.id;
+    this.terminoEjemplar = `#${ej.id} - ${ej.libro?.titulo || ej.detalle}`;
+    this.mostrarDropdownEjemplares = false;
+  }
+
+  ocultarEjemplares(): void {
+    setTimeout(() => this.mostrarDropdownEjemplares = false, 150);
   }
 
   buscarLector() {
@@ -107,5 +131,6 @@ export class PrestamoFormComponent implements OnInit {
     };
     this.terminoBusqueda = '';
     this.usuarioSeleccionado = false;
+    this.terminoEjemplar = '';
   }
 }

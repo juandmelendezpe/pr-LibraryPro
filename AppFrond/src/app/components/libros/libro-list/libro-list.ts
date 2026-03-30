@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EjemplarService } from '../../../services/ejemplar.service';
 import { Ejemplar } from '../../../models/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-libro-list',
@@ -19,7 +20,7 @@ export class LibroListComponent implements OnInit {
     genero: ''
   };
 
-  constructor(private ejemplarService: EjemplarService) { }
+  constructor(private ejemplarService: EjemplarService, private router: Router) { }
 
   ngOnInit(): void {
     this.cargarEjemplares();
@@ -43,6 +44,10 @@ export class LibroListComponent implements OnInit {
   limpiar() {
     this.filtros = { titulo: '', autor: '', genero: '' };
     this.ejemplares = [...this.ejemplaresAll];
+  }
+
+  irCrearLibro() {
+    this.router.navigate(['/libros/nuevo']);
   }
 }
 

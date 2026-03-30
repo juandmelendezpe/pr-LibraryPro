@@ -1,0 +1,86 @@
+<div class="flex flex-col w-[80%] max-w-2xl mx-auto justify-center gap-4 mb-[2%] mt-1 items-stretch">
+  <div class="w-full glass shadow-2xl border border-white/50 rounded-[7px] overflow-hidden flex flex-col min-h-[540px]">
+    <!-- Header Decorativo Estilo SO -->
+    <div class="h-10 flex items-center px-4 bg-slate-900/60 border-b border-white/20">
+      <div class="flex gap-2">
+        <div class="w-3 h-3 rounded-full bg-red-500 hover:opacity-80 cursor-pointer"></div>
+        <div class="w-3 h-3 rounded-full bg-yellow-500 hover:opacity-80 cursor-pointer"></div>
+        <div class="w-3 h-3 rounded-full bg-green-500 hover:opacity-80 cursor-pointer"></div>
+      </div>
+      <div class="flex-1 text-center text-white text-sm font-semibold mr-10 drop-shadow-md">Añadir Nuevo Libro al Catálogo</div>
+    </div>
+    
+    <div class="p-8 flex flex-col justify-center flex-1">
+      <form (ngSubmit)="guardarLibro()">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
+          <!-- Título -->
+          <div class="md:col-span-2">
+            <label class="block text-slate-200 text-sm font-bold mb-2 uppercase tracking-wide flex items-center gap-1">
+              Título del Libro <span class="text-red-400">*</span>
+            </label>
+            <input type="text" name="titulo" [(ngModel)]="libro.titulo" placeholder="Ej. El Señor de los Anillos" required
+                   class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 px-4 py-3.5 rounded-xl focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all hover:-translate-y-1 duration-[360ms] text-base">
+          </div>
+
+          <!-- Autor -->
+          <div class="md:col-span-2 relative">
+            <label class="block text-slate-200 text-sm font-bold mb-2 uppercase tracking-wide flex items-center gap-1">
+              Autor <span class="text-red-400">*</span>
+            </label>
+            <input type="text" name="autor" [(ngModel)]="libro.autor" placeholder="Selecciona o escribe el autor" required autocomplete="off"
+                   (input)="filtrarAutores($event)" (focus)="mostrarDropdownAutor = true" (blur)="ocultarAutores()"
+                   class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 px-4 py-3.5 rounded-xl focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all hover:-translate-y-1 duration-[360ms] text-base">
+            
+            <ul *ngIf="mostrarDropdownAutor && autoresFiltrados.length > 0" 
+                class="absolute z-50 w-full bg-slate-800/95 backdrop-blur border border-t-0 border-white/20 rounded-b-lg shadow-2xl overflow-y-auto max-h-[370px] mt-1 custom-scrollbar">
+              <li *ngFor="let autor of autoresFiltrados" (mousedown)="seleccionarAutor(autor)"
+                  class="px-4 py-2 hover:bg-slate-700 cursor-pointer text-white text-sm border-b border-white/5 last:border-0 transition-colors">
+                {{ autor }}
+              </li>
+            </ul>
+          </div>
+
+          <!-- Género -->
+          <div class="relative">
+            <label class="block text-slate-200 text-sm font-bold mb-2 uppercase tracking-wide flex items-center gap-1">
+              Género Principal
+            </label>
+            <input type="text" name="genero" [(ngModel)]="libro.genero" placeholder="Ej. Fantasía" autocomplete="off"
+                   (input)="filtrarGeneros($event)" (focus)="mostrarDropdownGenero = true" (blur)="ocultarGeneros()"
+                   class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 px-4 py-3.5 rounded-xl focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all hover:-translate-y-1 duration-[360ms] text-base">
+            
+            <ul *ngIf="mostrarDropdownGenero && generosFiltrados.length > 0" 
+                class="absolute z-50 w-full bg-slate-800/95 backdrop-blur border border-t-0 border-white/20 rounded-b-lg shadow-2xl overflow-y-auto max-h-[370px] mt-1 custom-scrollbar">
+              <li *ngFor="let genero of generosFiltrados" (mousedown)="seleccionarGenero(genero)"
+                  class="px-4 py-2 hover:bg-slate-700 cursor-pointer text-white text-sm border-b border-white/5 last:border-0 transition-colors">
+                {{ genero }}
+              </li>
+            </ul>
+          </div>
+
+          <!-- ISBN -->
+          <div>
+            <label class="block text-slate-200 text-sm font-bold mb-2 uppercase tracking-wide">ISBN (Opcional)</label>
+            <input type="text" name="isbn" [(ngModel)]="libro.isbn" placeholder="Ej. 978-3-16-148410-0"
+                   class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 px-4 py-3.5 rounded-xl focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all hover:-translate-y-1 duration-[360ms] text-base">
+          </div>
+        </div>
+
+        <hr class="border-white/10 my-4">
+
+        <div class="flex gap-4 mt-6">
+          <button type="submit" [disabled]="guardando || !libro.titulo || !libro.autor"
+                  class="flex-1 bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-4 rounded-xl transition-colors text-base disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg">
+            Guardar Libro
+          </button>
+          <button type="button" (click)="cancelar()"
+                  class="bg-white/10 hover:bg-white/20 text-white font-bold py-3 px-8 rounded-xl transition-colors text-base border border-white/20 flex items-center justify-center gap-2">
+            Cancelar
+          </button>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+</div>

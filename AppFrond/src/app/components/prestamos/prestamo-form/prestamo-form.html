@@ -39,16 +39,26 @@
         <div class="mb-4">
           <label class="block text-slate-200 text-xs font-bold mb-2 uppercase tracking-wide">Libro a Prestar (Ejemplar)</label>
           <div class="relative">
-            <select name="ejemplar" [(ngModel)]="prestamo.ejemplar.id" required 
-                    class="appearance-none w-full bg-white/10 border border-white/20 text-white px-3 py-2 rounded-lg focus:outline-none focus:border-blue-400 text-sm">
-              <option [ngValue]="undefined" disabled style="background:#1e293b;">Seleccione un ejemplar disponible...</option>
-              <option *ngFor="let ej of ejemplaresDisponibles" [value]="ej.id" style="background:#1e293b; color:white;">
-                #{{ ej.id }} - {{ ej.libro?.titulo || ej.detalle }}
-              </option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+            <input type="text" autocomplete="off" placeholder="Busque o seleccione un ejemplar..."
+                   [(ngModel)]="terminoEjemplar" name="terminoEjemplar" required
+                   (input)="filtrarEjemplares($event)" (focus)="mostrarDropdownEjemplares = true" (blur)="ocultarEjemplares()"
+                   class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 px-3 py-2 rounded-lg focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all text-sm">
+            
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white/50">
               <span class="material-symbols-outlined text-sm">expand_more</span>
             </div>
+
+            <!-- Custom Dropdown Glass -->
+            <ul *ngIf="mostrarDropdownEjemplares && ejemplaresFiltrados.length > 0" 
+                class="absolute z-50 w-full bg-slate-800/95 backdrop-blur border border-t-0 border-white/20 rounded-b-lg shadow-2xl overflow-y-auto max-h-[250px] mt-1 custom-scrollbar">
+              <li *ngFor="let ej of ejemplaresFiltrados" (mousedown)="seleccionarEjemplar(ej)"
+                  class="px-4 py-2 hover:bg-slate-700 cursor-pointer text-white text-sm border-b border-white/5 last:border-0 transition-colors">
+                <span class="text-blue-300 font-bold mr-1">#{{ ej.id }}</span> {{ ej.libro?.titulo || ej.detalle }}
+              </li>
+              <li *ngIf="ejemplaresFiltrados.length === 0" class="px-4 py-2 text-white/50 text-sm italic cursor-default">
+                No se encontraron ejemplares disponibles
+              </li>
+            </ul>
           </div>
         </div>
 
