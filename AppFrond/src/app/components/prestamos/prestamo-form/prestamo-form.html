@@ -53,7 +53,7 @@
                 class="absolute z-50 w-full bg-slate-800/95 backdrop-blur border border-t-0 border-white/20 rounded-b-lg shadow-2xl overflow-y-auto max-h-[250px] mt-1 custom-scrollbar">
               <li *ngFor="let ej of ejemplaresFiltrados" (mousedown)="seleccionarEjemplar(ej)"
                   class="px-4 py-2 hover:bg-slate-700 cursor-pointer text-white text-sm border-b border-white/5 last:border-0 transition-colors">
-                <span class="text-blue-300 font-bold mr-1">#{{ ej.id }}</span> {{ ej.libro?.titulo || ej.detalle }}
+                <span class="text-blue-300 font-bold mr-1">#{{ ej.id }}</span> {{ ej.libro.titulo || ej.detalle }}
               </li>
               <li *ngIf="ejemplaresFiltrados.length === 0" class="px-4 py-2 text-white/50 text-sm italic cursor-default">
                 No se encontraron ejemplares disponibles
