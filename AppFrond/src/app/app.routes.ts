@@ -7,6 +7,8 @@ import { DonacionFormComponent } from './components/donaciones/donacion-form/don
 import { GestionarResponsableComponent } from './components/admin/gestionar-responsable/gestionar-responsable';
 import { LibroNuevoComponent } from './components/libros/libro-nuevo/libro-nuevo';
 import { UsuarioNuevoComponent } from './components/usuarios/usuario-nuevo/usuario-nuevo';
+import { ReportesComponent } from './components/reportes/reportes';
+import { SoporteComponent } from './components/soporte/soporte';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -18,5 +20,7 @@ export const routes: Routes = [
   { path: 'prestamos', component: PrestamoFormComponent, canActivate: [authGuard] },
   { path: 'donaciones', component: DonacionFormComponent, canActivate: [authGuard] },
   { path: 'gestion-responsables', component: GestionarResponsableComponent, canActivate: [authGuard] },
-  { path: 'usuarios/nuevo', component: UsuarioNuevoComponent, canActivate: [authGuard] }
+  { path: 'usuarios/nuevo', component: UsuarioNuevoComponent, canActivate: [authGuard] },
+  { path: 'reportes', component: ReportesComponent, canActivate: [authGuard] },
+  { path: 'soporte', component: SoporteComponent, canActivate: [authGuard] }
 ];
