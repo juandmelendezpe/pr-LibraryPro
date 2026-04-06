@@ -7,7 +7,7 @@
     <!-- HEADER -->
     <div class="h-12 flex items-center px-4 bg-slate-900/60 border-b border-white/20 justify-between">
       <div class="text-white text-sm font-bold uppercase tracking-wide">
-        {{ isNew ? 'Crear Nuevo ' + editableUser.rol.titulo : 'Editar Usuario' }}
+        Editar Lector
       </div>
       <button (click)="cerrar()" class="text-white/50 hover:text-white transition-colors">
         <span class="material-symbols-outlined font-bold text-xl">close</span>
@@ -51,26 +51,7 @@
         <h3 class="text-slate-300 text-xs font-semibold uppercase tracking-wider mb-3 pb-1 border-b border-white/10">Acceso y Sistema</h3>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-          <div *ngIf="isNew">
-            <label class="block text-slate-200 text-[10px] font-bold mb-1 uppercase tracking-wide">Contraseña <span class="text-red-400">*</span></label>
-            <input type="password" name="contrasena" [(ngModel)]="editableUser.contrasena" required placeholder="Asignar contraseña"
-                   class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 px-3 py-2 rounded-lg focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all text-sm">
-          </div>
-          <div>
-            <label class="block text-slate-200 text-[10px] font-bold mb-1 uppercase tracking-wide">Rol del Sistema</label>
-            <div class="relative">
-              <select name="rolSelect" [ngModel]="editableUser.rol.titulo" (change)="onRoleChange($event)"
-                      class="w-full bg-white/10 border border-white/20 text-white appearance-none px-3 py-2 rounded-lg focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all text-sm [&>option]:bg-slate-800">
-                <option value="Lector">Lector</option>
-                <option value="Gestor">Gestor</option>
-                <option value="Admin">Administrador</option>
-              </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white/50">
-                <span class="material-symbols-outlined text-sm">expand_more</span>
-              </div>
-            </div>
-          </div>
-          <div class="flex items-end pb-1">
+          <div class="flex items-end pb-1 md:col-span-2">
              <label class="flex items-center gap-2 cursor-pointer select-none">
                <input type="checkbox" name="activo" [(ngModel)]="editableUser.activo" class="hidden peer">
                <div class="w-10 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500 relative transition-colors shadow-inner"></div>
@@ -85,7 +66,7 @@
             Cancelar
           </button>
           <button type="submit" [disabled]="!userForm.form.valid" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-8 rounded-lg transition-colors text-sm shadow-md shadow-blue-500/30 disabled:opacity-50 disabled:cursor-not-allowed">
-            {{ isNew ? 'Crear' : 'Guardar Cambios' }}
+            Guardar Cambios
           </button>
         </div>
         

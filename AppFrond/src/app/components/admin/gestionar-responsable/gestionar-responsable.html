@@ -136,10 +136,18 @@
   </div>
 </div>
 
-<!-- COMPONENTE MODAL USER EDITAR -->
+<!-- COMPONENTE MODAL USER EDITAR (Para Lectores) -->
 <app-user-editar 
-   [isOpen]="isModalOpen" 
-   [usuarioData]="modalData" 
+   [isOpen]="isModalLectorOpen" 
+   [usuarioData]="modalLectorData" 
    (cancel)="cerrarModal()" 
    (save)="guardarUsuario($event)">
 </app-user-editar>
+
+<!-- COMPONENTE MODAL GESTOR EDITAR (Para Gestores y Admins) -->
+<app-gestor-editar 
+   [isOpen]="isModalGestorOpen" 
+   [gestorData]="modalGestorData" 
+   (cancel)="cerrarModal()" 
+   (save)="guardarUsuario($event)">
+</app-gestor-editar>

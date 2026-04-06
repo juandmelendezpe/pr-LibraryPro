@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UsuarioService } from '../../../services/usuario.service';
+import { Router } from '@angular/router';
 import { Usuario, Rol } from '../../../models/models';
-import { UserEditarComponent } from '../user-editar/user-editar';
+import { UserEditarComponent } from '../../usuarios/user-editar/user-editar';
+import { GestorEditarComponent } from '../gestor-editar/gestor-editar';
 
 @Component({
   selector: 'app-gestionar-responsable',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserEditarComponent],
+  imports: [CommonModule, FormsModule, UserEditarComponent, GestorEditarComponent],
   templateUrl: './gestionar-responsable.html',
 })
 export class GestionarResponsableComponent implements OnInit {
@@ -22,10 +24,12 @@ export class GestionarResponsableComponent implements OnInit {
   terminoBusquedaGestores: string = '';
 
   // Modal State
-  isModalOpen: boolean = false;
-  modalData: { user: Usuario | null, defaultRole: 'Lector' | 'Gestor' } | null = null;
+  isModalLectorOpen: boolean = false;
+  isModalGestorOpen: boolean = false;
+  modalLectorData: { user: Usuario | null } | null = null;
+  modalGestorData: { user: Usuario | null } | null = null;
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService, private router: Router) { }
 
   ngOnInit(): void {
     this.cargarUsuarios();
@@ -94,18 +98,29 @@ export class GestionarResponsableComponent implements OnInit {
 
   // Edit / Create Logic
   abrirModalCrear() {
-    this.modalData = { user: null, defaultRole: this.activeTab === 'lectores' ? 'Lector' : 'Gestor' };
-    this.isModalOpen = true;
+    if (this.activeTab === 'lectores') {
+      this.router.navigate(['/usuarios/nuevo']);
+    } else {
+      this.modalGestorData = { user: null };
+      this.isModalGestorOpen = true;
+    }
   }
 
   abrirModalEditar(usuario: Usuario) {
-    this.modalData = { user: usuario, defaultRole: this.activeTab === 'lectores' ? 'Lector' : 'Gestor' };
-    this.isModalOpen = true;
+    if (usuario.rol?.titulo === 'Lector') {
+      this.modalLectorData = { user: usuario };
+      this.isModalLectorOpen = true;
+    } else {
+      this.modalGestorData = { user: usuario };
+      this.isModalGestorOpen = true;
+    }
   }
 
   cerrarModal() {
-    this.isModalOpen = false;
-    this.modalData = null;
+    this.isModalLectorOpen = false;
+    this.isModalGestorOpen = false;
+    this.modalLectorData = null;
+    this.modalGestorData = null;
   }
 
   guardarUsuario(usuarioGuardado: Usuario) {

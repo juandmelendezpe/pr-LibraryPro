@@ -4,33 +4,29 @@ import { FormsModule } from '@angular/forms';
 import { Usuario } from '../../../models/models';
 
 @Component({
-  selector: 'app-user-editar',
+  selector: 'app-gestor-editar',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './user-editar.html',
+  templateUrl: './gestor-editar.html',
 })
-export class UserEditarComponent {
+export class GestorEditarComponent {
   @Input() isOpen: boolean = false;
   @Input() 
-  set usuarioData(val: { user: Usuario | null, defaultRole: 'Lector' | 'Gestor' } | null) {
+  set gestorData(val: { user: Usuario | null } | null) {
     if (val && val.user) {
       // Editar existente
       this.editableUser = { ...val.user };
       this.isNew = false;
     } else {
-      // Crear nuevo
+      // Crear nuevo Gestor por defecto
       this.isNew = true;
-      let initialRole = { id: 1, titulo: 'Lector' };
-      if (val && val.defaultRole === 'Gestor') {
-        initialRole = { id: 2, titulo: 'Gestor' }; // Asumimos id 2 es  Gestor
-      }
       this.editableUser = {
         nombre: '',
         email: '',
         contrasena: '',
         telefono: '',
         direccion: '',
-        rol: initialRole,
+        rol: { id: 2, titulo: 'Gestor' },
         activo: true
       };
     }
@@ -39,26 +35,25 @@ export class UserEditarComponent {
   @Output() save = new EventEmitter<Usuario>();
   @Output() cancel = new EventEmitter<void>();
 
-  editableUser: Usuario = this.obtenerUsuarioVacio();
+  editableUser: Usuario = this.obtenerGestorVacio();
   isNew: boolean = false;
 
-  obtenerUsuarioVacio(): Usuario {
+  obtenerGestorVacio(): Usuario {
     return {
       nombre: '',
       email: '',
       contrasena: '',
       telefono: '',
       direccion: '',
-      rol: { id: 1, titulo: 'Lector' },
+      rol: { id: 2, titulo: 'Gestor' },
       activo: true
     };
   }
 
-  // Permite seleccionar el rol (1=Lector,2=Gestor,  3=Admin, 4=SuperAdmin - IDs asumidos)
+  // Solo permite cambiar entre Gestor o Admin
   onRoleChange(event: any) {
     const rolTitulo = event.target.value;
-    let rolId = 1;
-    if (rolTitulo === 'Gestor') rolId = 2;
+    let rolId = 2; // Gestor
     if (rolTitulo === 'Admin') rolId = 3;
     if (rolTitulo === 'SuperAdmin') rolId = 4;
     this.editableUser.rol = { id: rolId, titulo: rolTitulo };
