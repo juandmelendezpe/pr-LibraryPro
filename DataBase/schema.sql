@@ -74,3 +74,11 @@ CREATE TABLE donacion (
     usuario_id INT REFERENCES usuario(id) ON DELETE SET NULL,
     ejemplar_id INT REFERENCES ejemplar(id) ON DELETE CASCADE
 );
+CREATE TABLE devolucion (
+    id SERIAL PRIMARY KEY,
+    prestamo_id INT REFERENCES prestamo(id) ON DELETE CASCADE,
+    fecha_devolucion DATE NOT NULL DEFAULT CURRENT_DATE,
+    gestor_id INT REFERENCES usuario(id),
+    descripcion TEXT
+);
+

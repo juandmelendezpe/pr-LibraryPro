@@ -6,11 +6,12 @@ import { Router } from '@angular/router';
 import { Usuario, Rol } from '../../../models/models';
 import { UserEditarComponent } from '../../usuarios/user-editar/user-editar';
 import { GestorEditarComponent } from '../gestor-editar/gestor-editar';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-gestionar-responsable',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserEditarComponent, GestorEditarComponent],
+  imports: [CommonModule, FormsModule, UserEditarComponent, GestorEditarComponent, RouterModule],
   templateUrl: './gestionar-responsable.html',
 })
 export class GestionarResponsableComponent implements OnInit {

@@ -9,6 +9,8 @@ import { LibroNuevoComponent } from './components/libros/libro-nuevo/libro-nuevo
 import { UsuarioNuevoComponent } from './components/usuarios/usuario-nuevo/usuario-nuevo';
 import { ReportesComponent } from './components/reportes/reportes';
 import { SoporteComponent } from './components/soporte/soporte';
+import { UsuarioActivityComponent } from './components/usuarios/usuario-activity/usuario-activity';
+import { DevolucionFormComponent } from './components/devoluciones/devolucion-form/devolucion-form';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -21,6 +23,8 @@ export const routes: Routes = [
   { path: 'donaciones', component: DonacionFormComponent, canActivate: [authGuard] },
   { path: 'gestion-responsables', component: GestionarResponsableComponent, canActivate: [authGuard] },
   { path: 'usuarios/nuevo', component: UsuarioNuevoComponent, canActivate: [authGuard] },
+  { path: 'usuarios/actividad/:id', component: UsuarioActivityComponent, canActivate: [authGuard] },
+  { path: 'devoluciones/nuevo/:prestamoId', component: DevolucionFormComponent, canActivate: [authGuard] },
   { path: 'reportes', component: ReportesComponent, canActivate: [authGuard] },
   { path: 'soporte', component: SoporteComponent, canActivate: [authGuard] }
 ];

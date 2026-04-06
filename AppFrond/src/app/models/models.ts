@@ -56,3 +56,11 @@ export interface Donacion {
     donante: Usuario;
     ejemplar: Ejemplar;
 }
+
+export interface Devolucion {
+    id?: number;
+    prestamo: Prestamo;
+    fechaDevolucion: string;
+    gestorReceptor: Usuario;
+    descripcion?: string;
+}
