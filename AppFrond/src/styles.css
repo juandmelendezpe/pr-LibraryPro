@@ -2,9 +2,11 @@
   --primary: #2563eb;
   --purple: #cb3eeb;
   --primary-hover: #1d4ed8;
+  --blue: #2563eb;
   --secondary: #10b981;
   --bg-main: #f8fafc;
   --bg-card: #ffffff;
+  --bg-blue: #03297b9a;
   --text-main: #1e293b;
   --text-muted: #64748b;
   --border: #e2e8f0;
@@ -104,6 +106,10 @@ h2 {
 }
 
 /* Table Styles */
+.bg-blue{
+  background-color: var(--bg-blue);
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -125,7 +131,7 @@ tr:hover {
   background-color: var(--text-muted);
 }
 .glass { background: rgba(16, 22, 34, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-.desktop-bg { background-image: linear-gradient(135deg, #1152d4 0%, #061a40 100%); }
+.desktop-bg { background-image: linear-gradient(135deg, #77be9c 0%, #092c2c 100%); }
 
 /* Hide scrollbar for complete OS illusion */
 .no-scrollbar::-webkit-scrollbar {
@@ -137,6 +143,12 @@ tr:hover {
 }
 .border-purple{
   border-color: var(--purple);
+}
+.hover-purple-border:hover{
+  border-color: var(--purple);
+}
+.hover-blue-border:hover{
+  border-color: var(--blue);
 }
 
 /* Custom sleek scrollbar for glass containers */

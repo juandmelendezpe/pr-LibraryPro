@@ -62,8 +62,8 @@
               <select name="rolSelect" [ngModel]="editableUser.rol.titulo" (change)="onRoleChange($event)"
                       class="w-full bg-white/10 border border-white/20 text-white appearance-none px-3 py-2 rounded-lg focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all text-sm [&>option]:bg-slate-800">
                 <option value="Lector">Lector</option>
+                <option value="Gestor">Gestor</option>
                 <option value="Admin">Administrador</option>
-                <option value="SuperAdmin">Súper Administrador</option>
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white/50">
                 <span class="material-symbols-outlined text-sm">expand_more</span>

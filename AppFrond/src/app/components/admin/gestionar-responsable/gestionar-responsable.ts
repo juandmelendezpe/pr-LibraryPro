@@ -61,7 +61,7 @@ export class GestionarResponsableComponent implements OnInit {
   }
 
   get gestores(): Usuario[] {
-    let filtrados = this.usuarios.filter(u => ['Admin', 'SuperAdmin'].includes(u.rol?.titulo));
+    let filtrados = this.usuarios.filter(u => ['Gestor', 'Admin', 'SuperAdmin'].includes(u.rol?.titulo));
     
     // Sort gestores as well for consistency
     filtrados.sort((a, b) => {
@@ -121,7 +121,7 @@ export class GestionarResponsableComponent implements OnInit {
   }
 
   promoverASuperAdmin(usuario: Usuario) {
-    usuario.rol = { id: 3, titulo: 'SuperAdmin' };
+    usuario.rol = { id: 4, titulo: 'SuperAdmin' };
     this.usuarioService.guardar(usuario).subscribe();
   }
 }

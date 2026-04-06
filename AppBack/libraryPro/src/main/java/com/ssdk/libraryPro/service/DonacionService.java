@@ -2,6 +2,7 @@ package com.ssdk.libraryPro.service;
 
 import com.ssdk.libraryPro.model.Donacion;
 import com.ssdk.libraryPro.repository.DonacionRepository;
+import com.ssdk.libraryPro.repository.EjemplarRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,9 +12,11 @@ import java.util.Optional;
 @Service
 public class DonacionService {
     private final DonacionRepository donacionRepository;
+    private final EjemplarRepository ejemplarRepository;
 
-    public DonacionService(DonacionRepository donacionRepository) {
+    public DonacionService(DonacionRepository donacionRepository, EjemplarRepository ejemplarRepository) {
         this.donacionRepository = donacionRepository;
+        this.ejemplarRepository = ejemplarRepository;
     }
 
     @Transactional(readOnly = true)
@@ -28,6 +31,9 @@ public class DonacionService {
 
     @Transactional
     public Donacion guardar(Donacion donacion) {
+        if (donacion.getEjemplar() != null && donacion.getEjemplar().getId() == null) {
+            ejemplarRepository.save(donacion.getEjemplar()); 
+        }
         return donacionRepository.save(donacion);
     }
 

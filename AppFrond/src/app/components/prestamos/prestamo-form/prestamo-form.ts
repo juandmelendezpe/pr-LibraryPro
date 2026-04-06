@@ -83,13 +83,20 @@ export class PrestamoFormComponent implements OnInit {
 
   buscarLector() {
     if (!this.terminoBusqueda) return;
-    this.usuarioService.buscarUsuario(this.terminoBusqueda).subscribe(usuarios => {
-      if (usuarios && usuarios.length > 0) {
-        this.usuarioSeleccionado = true;
-      } else {
-        alert('Lector no encontrado. Por favor, haga clic en "Crear Perfil Manualmente".');
-        this.usuarioSeleccionado = false;
-        this.prestamo.prestatario = { nombre: '', email: '', telefono: '', rol: { id: 3, titulo: 'Lector' }, activo: true };
+    this.usuarioService.buscarUsuario(this.terminoBusqueda).subscribe({
+      next: (usuarios) => {
+        if (usuarios && usuarios.length > 0) {
+          this.usuarioSeleccionado = true;
+          this.prestamo.prestatario = usuarios[0];
+        } else {
+          alert('Lector no encontrado. Por favor, haga clic en "Crear Perfil Manualmente".');
+          this.usuarioSeleccionado = false;
+          this.prestamo.prestatario = { nombre: '', email: '', telefono: '', rol: { id: 3, titulo: 'Lector' }, activo: true };
+        }
+      },
+      error: (err) => {
+        console.error('Error buscando lector', err);
+        alert('Error al buscar el lector.');
       }
     });
   }

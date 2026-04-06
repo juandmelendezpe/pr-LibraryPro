@@ -22,7 +22,7 @@ export class UserEditarComponent {
       this.isNew = true;
       let initialRole = { id: 1, titulo: 'Lector' };
       if (val && val.defaultRole === 'Gestor') {
-        initialRole = { id: 2, titulo: 'Admin' }; // Asumimos id 2 es Admin
+        initialRole = { id: 2, titulo: 'Gestor' }; // Asumimos id 2 es  Gestor
       }
       this.editableUser = {
         nombre: '',
@@ -54,12 +54,13 @@ export class UserEditarComponent {
     };
   }
 
-  // Permite seleccionar el rol (1=Lector, 2=Admin, 3=SuperAdmin - IDs asumidos)
+  // Permite seleccionar el rol (1=Lector,2=Gestor,  3=Admin, 4=SuperAdmin - IDs asumidos)
   onRoleChange(event: any) {
     const rolTitulo = event.target.value;
     let rolId = 1;
-    if (rolTitulo === 'Admin') rolId = 2;
-    if (rolTitulo === 'SuperAdmin') rolId = 3;
+    if (rolTitulo === 'Gestor') rolId = 2;
+    if (rolTitulo === 'Admin') rolId = 3;
+    if (rolTitulo === 'SuperAdmin') rolId = 4;
     this.editableUser.rol = { id: rolId, titulo: rolTitulo };
   }
 

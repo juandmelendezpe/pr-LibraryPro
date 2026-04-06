@@ -19,7 +19,7 @@ export class UsuarioNuevoComponent {
     telefono: '',
     direccion: '',
     contrasena: '',
-    rol: { id: 3, titulo: 'Lector' },
+    rol: { id: 1, titulo: 'Lector' },
     activo: true
   };
 

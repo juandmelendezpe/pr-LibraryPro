@@ -44,7 +44,7 @@ export class DonacionFormComponent implements OnInit {
       next: (data) => {
         this.ultimasDonaciones = data
           .sort((a, b) => (b.id || 0) - (a.id || 0))
-          .slice(0, 8);
+          .slice(0, 7);
       },
       error: (err) => console.error('Error al cargar donaciones', err)
     });
