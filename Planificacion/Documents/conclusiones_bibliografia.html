@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conclusiones y Bibliografía - LiFe System</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #10b981;
+            --purple: #cb3eeb;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-top: 0;
+            border-bottom: 3px solid var(--border);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--purple);
+            font-size: 1.5rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .custom-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .custom-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            color: var(--text-main);
+        }
+
+        .custom-list li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .biblio-list li {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .biblio-list li::before {
+            content: "📄";
+            font-size: 1.1rem;
+            top: 2px;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .highlight-box {
+            background-color: #f1f5f9;
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 30px;
+        }
+
+        .highlight-box h3 {
+            margin-top: 0;
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Documentación Final: LiFe System</h1>
+    
+    <h2>🎯 1. Conclusiones</h2>
+    <p>Tras la planificación, diseño y desarrollo del sistema de gestión bibliotecaria <strong>LiFe System</strong>, hemos llegado a las siguientes conclusiones:</p>
+    <ul class="custom-list">
+        <li>Desarrollar una aplicación completa desde cero es una labor compleja que exige una planificación detallada, un riguroso modelado de datos y una toma de decisiones constante a lo largo del ciclo de vida del software.</li>
+        <li>La implementación de tecnologías robustas como Angular y Spring Boot implica una curva de aprendizaje inicial, lo que puede alargar los tiempos de desarrollo y aumentar la probabilidad de errores en las primeras etapas, pero garantiza un resultado final altamente escalable y mantenible.</li>
+        <li>La separación de responsabilidades entre el <strong>Backend</strong> (gestión de lógica de negocio y persistencia de datos) y el <strong>Frontend</strong> (interfaz interactiva de usuario) es un estándar arquitectónico fundamental en las aplicaciones modernas, ya que permite que ambos entornos evolucionen de manera independiente.</li>
+    </ul>
+
+    <h2>🚀 2. Posibles Ampliaciones (Trabajo Futuro)</h2>
+    <p>El sistema ha sido diseñado con una arquitectura modular que facilita su crecimiento. Algunas mejoras planificadas para versiones posteriores son:</p>
+    <ul class="custom-list">
+        <li><strong>Sistema de Notificaciones Automáticas:</strong> Implementar alertas por correo electrónico para notificar a los lectores cuando el plazo de su préstamo esté a punto de expirar o cuando tengan devoluciones atrasadas.</li>
+        <li><strong>Módulo de Reservas y Lista de Espera:</strong> Permitir a los usuarios reservar ejemplares que actualmente se encuentren prestados, generando una cola de prioridad automatizada.</li>
+        <li><strong>Integración con APIs Externas:</strong> Conectar el formulario de registro de "Nuevos Libros" a servicios como <em>Google Books API</em> o <em>OpenLibrary</em> para autocompletar la metadata (Autor, Género, Portada) ingresando únicamente el código ISBN.</li>
+        <li><strong>Gestión de Sanciones:</strong> Añadir un sistema de control de multas o suspensiones temporales para usuarios que devuelvan los libros en mal estado o fuera del plazo establecido.</li>
+    </ul>
+
+    <h2>📚 3. Bibliografía y Herramientas</h2>
+    <p>A continuación se detallan las principales tecnologías, frameworks y recursos documentales utilizados durante la construcción de LiFe System:</p>
+    <ul class="custom-list biblio-list">
+        <li><strong>Angular.</strong> (s. f.). The modern web developer's platform. <a href="https://angular.io/" target="_blank">https://angular.io/</a></li>
+        <li><strong>Spring Boot.</strong> (s. f.). Spring Boot Framework. <a href="https://spring.io/projects/spring-boot" target="_blank">https://spring.io/projects/spring-boot</a></li>
+        <li><strong>Java.</strong> (s. f.). Java Programming Language. <a href="https://www.java.com/" target="_blank">https://www.java.com/</a></li>
+        <li><strong>PostgreSQL.</strong> (s. f.). The World's Most Advanced Open Source Relational Database. <a href="https://www.postgresql.org/" target="_blank">https://www.postgresql.org/</a></li>
+        <li><strong>pgAdmin.</strong> (s. f.). PostgreSQL Tools. <a href="https://www.pgadmin.org/" target="_blank">https://www.pgadmin.org/</a></li>
+        <li><strong>TypeScript.</strong> (s. f.). JavaScript With Syntax For Types. <a href="https://www.typescriptlang.org/" target="_blank">https://www.typescriptlang.org/</a></li>
+        <li><strong>Tailwind CSS.</strong> (s. f.). Rapidly build modern websites without ever leaving your HTML. <a href="https://tailwindcss.com/" target="_blank">https://tailwindcss.com/</a></li>
+        <li><strong>Eclipse IDE.</strong> (s. f.). The Eclipse Foundation. <a href="https://www.eclipse.org/ide/" target="_blank">https://www.eclipse.org/ide/</a></li>
+        <li><strong>Figma.</strong> (s. f.). The collaborative interface design tool. <a href="https://www.figma.com/" target="_blank">https://www.figma.com/</a></li>
+    </ul>
+
+</div>
+
+</body>
+</html>

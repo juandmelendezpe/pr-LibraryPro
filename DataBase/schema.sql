@@ -1,5 +1,4 @@
 -- Database Schema for LibraryPro - Postgres 17 (Refactored/Normalized)
-
 -- Drop tables if they exist to allow clean re-execution
 DROP TABLE IF EXISTS donacion;
 DROP TABLE IF EXISTS prestamo;
@@ -10,7 +9,6 @@ DROP TABLE IF EXISTS rol;
 DROP TABLE IF EXISTS estado_libro;
 DROP TABLE IF EXISTS estado_prestamo;
 
--- Lookup Tables
 CREATE TABLE rol (
     id SERIAL PRIMARY KEY,
     titulo VARCHAR(20) UNIQUE NOT NULL

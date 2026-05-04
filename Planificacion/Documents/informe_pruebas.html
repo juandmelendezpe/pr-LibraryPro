@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Pruebas Unitarias - LiFe System</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #10b981;
+            --danger: #ef4444;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin-top: 30px;
+        }
+
+        .summary-cards {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            flex: 1;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            background-color: #f1f5f9;
+            border: 1px solid var(--border);
+        }
+
+        .card.success {
+            background-color: #d1fae5;
+            border-color: #34d399;
+            color: #065f46;
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .test-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .test-table th, .test-table td {
+            text-align: left;
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .test-table th {
+            background-color: #f8fafc;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .status-passed {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .method-name {
+            font-family: monospace;
+            color: #cb3eeb;
+            background-color: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .details-box {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Informe de Pruebas Unitarias (Backend)</h1>
+    <p><strong>Proyecto:</strong> LiFe System</p>
+    <p><strong>Capa Analizada:</strong> Lógica de Negocio (<code>UsuarioService.java</code>)</p>
+    <p><strong>Tecnologías:</strong> Java 21, Spring Boot, JUnit 5, Mockito</p>
+
+    <div class="summary-cards">
+        <div class="card">
+            <span class="card-value">3</span>
+            <span>Total de Pruebas</span>
+        </div>
+        <div class="card success">
+            <span class="card-value">3</span>
+            <span>Pruebas Exitosas</span>
+        </div>
+        <div class="card">
+            <span class="card-value">100%</span>
+            <span>Tasa de Aprobación</span>
+        </div>
+    </div>
+
+    <h2>Detalle de Ejecución</h2>
+    <table class="test-table">
+        <thead>
+            <tr>
+                <th>Nombre del Test</th>
+                <th>Objetivo Validado</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="method-name">testCrearUsuario_GuardarExitoso</span></td>
+                <td>Simula el registro de un nuevo lector/gestor. Valida que el objeto se guarde utilizando el repositorio correctamente y retorna los valores esperados.</td>
+                <td><span class="status-badge status-passed">PASSED</span></td>
+            </tr>
+            <tr>
+                <td><span class="method-name">testLogin_BuscarPorEmail_Exitoso</span></td>
+                <td>Simula un Login exitoso. Valida la búsqueda de un email registrado en la BD y verifica que la contraseña mockeada coincida para la autorización.</td>
+                <td><span class="status-badge status-passed">PASSED</span></td>
+            </tr>
+            <tr>
+                <td><span class="method-name">testLogin_BuscarPorEmail_FalloNoExiste</span></td>
+                <td>Simula un Login fallido. Valida el comportamiento del sistema cuando se ingresa un correo que no está registrado en la base de datos (Retorno vacío).</td>
+                <td><span class="status-badge status-passed">PASSED</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="details-box">
+        <h3>🔍 Conclusión Técnica</h3>
+        <p>Las pruebas unitarias sobre el módulo de usuarios han finalizado de manera satisfactoria. Gracias a la utilización de <strong>Mockito</strong>, se logró aislar la capa de servicio (<code>UsuarioService</code>) sin necesidad de conectar a una base de datos real (PostgreSQL).</p>
+        <p>Esto garantiza que la lógica central del negocio —la creación de perfiles y la verificación de credenciales básicas para el Login— es robusta y responde exactamente como se espera ante escenarios de éxito y escenarios de error.</p>
+    </div>
+</div>
+
+</body>
+</html>
