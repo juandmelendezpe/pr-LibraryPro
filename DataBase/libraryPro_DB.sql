@@ -375,3 +375,51 @@ BEGIN
     END LOOP;
 END $$;
 
+-- --------------------------------------------------------
+-- NUEVOS DATOS EXTRAÍDOS DE libraryPro_DB_plain.sql
+-- --------------------------------------------------------
+
+-- Nuevos Usuarios (Admins, Gestores, Lectores adicionales)
+INSERT INTO usuario (nombre, email, password, telefono, direccion, rol_id, activo) VALUES
+('Juan D. Meléndez Peña', 'juanmelendez.pe@ssdk.com', 'jdmp2026', '987456321', 'calle hornos caleros 37, 5A - 1 der', (SELECT id FROM rol WHERE titulo = 'Admin'), TRUE),
+('Karina Nieto', 'karina@ejemplo.com', 'qwerty', '123456789', 'calle hornos caleros 40', (SELECT id FROM rol WHERE titulo = 'Admin'), TRUE),
+('john sunday', 'jsunday@gmail.com', 'qwerty', '987456321', 'calle hornos caleros 37', (SELECT id FROM rol WHERE titulo = 'Gestor'), TRUE),
+('Juan D. Meléndez Peña', 'juanmelendez.pe@gmail.com', 'qwerty', '987456321', 'calle hornos caleros 37', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE),
+('Patricia Power', 'patriciapower@ejemplo.com', 'test', '123456789', 'calle real 1', (SELECT id FROM rol WHERE titulo = 'Lector'), TRUE);
+
+-- Nuevos Libros
+INSERT INTO libro (isbn, titulo, autor, genero) VALUES
+('123456987789', 'Programacion de Objetos con Php 8', 'Autor Desconocido', 'Modernista'),
+('123456987781', 'Programacion de Objetos con Php 8 V2', 'Juan MP', 'tecnologia'),
+('987-956-321-321', 'Programacion POO de Java 2026', 'Juan Rulfo', 'tecnologia'),
+('987654321321', 'Programación Orientados a Objetos con Java 25', 'Juan MP', 'tecnologia');
+
+-- Nuevos Ejemplares
+INSERT INTO ejemplar (libro_id, fec_ingreso, detalle, estado_id) VALUES
+((SELECT id FROM libro WHERE isbn = '987-956-321-321'), '2026-04-01', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE isbn = '123456987789'), '2026-04-02', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE isbn = '123456987789'), '2026-04-03', 'Usado', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible')),
+((SELECT id FROM libro WHERE isbn = '987654321321'), '2026-05-05', 'Nuevo', (SELECT id FROM estado_libro WHERE descripcion_estado_libro = 'Disponible'));
+
+-- Nuevas Donaciones
+INSERT INTO donacion (fecha, observaciones, usuario_id, ejemplar_id) VALUES
+('2026-04-01', 'danacion realizado por Juan Morales', (SELECT id FROM usuario WHERE email = 'juan.morales6@ejemplo.com'), (SELECT id FROM ejemplar WHERE libro_id = (SELECT id FROM libro WHERE isbn = '987-956-321-321') AND fec_ingreso = '2026-04-01')),
+('2026-04-02', 'donado por juan melendez', (SELECT id FROM usuario WHERE email = 'juanmelendez.pe@ssdk.com'), (SELECT id FROM ejemplar WHERE libro_id = (SELECT id FROM libro WHERE isbn = '123456987789') AND fec_ingreso = '2026-04-02')),
+('2026-04-03', 'donado por juan melendez', (SELECT id FROM usuario WHERE email = 'juanmelendez.pe@ssdk.com'), (SELECT id FROM ejemplar WHERE libro_id = (SELECT id FROM libro WHERE isbn = '123456987789') AND fec_ingreso = '2026-04-03')),
+('2026-05-04', 'libro nuevo - ', (SELECT id FROM usuario WHERE email = 'patriciapower@ejemplo.com'), (SELECT id FROM ejemplar WHERE libro_id = (SELECT id FROM libro WHERE isbn = '987654321321') AND fec_ingreso = '2026-05-05'));
+
+-- Nuevos Préstamos
+INSERT INTO prestamo (fecha_inicio, fecha_devolucion, estado_id, usuario_id, ejemplar_id) VALUES
+('2026-03-23', '2026-03-31', (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), (SELECT id FROM usuario WHERE email = 'super@librarypro.com'), (SELECT id FROM ejemplar WHERE libro_id = (SELECT id FROM libro WHERE titulo = 'Un Mundo Feliz') LIMIT 1)),
+('2026-04-01', '2026-04-22', (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), (SELECT id FROM usuario WHERE email = 'juanmelendez.pe@ssdk.com'), (SELECT id FROM ejemplar WHERE libro_id = (SELECT id FROM libro WHERE titulo = 'Libro Genérico Vol 99') LIMIT 1)),
+('2026-04-03', '2026-04-30', (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), (SELECT id FROM usuario WHERE email = 'juanmelendez.pe@ssdk.com'), (SELECT id FROM ejemplar WHERE libro_id = (SELECT id FROM libro WHERE isbn = '987-956-321-321') AND fec_ingreso = '2026-04-01')),
+('2026-05-04', '2026-05-11', (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Activo'), (SELECT id FROM usuario WHERE email = 'karina@ejemplo.com'), (SELECT id FROM ejemplar WHERE libro_id = (SELECT id FROM libro WHERE titulo = 'Don Quijote de la Mancha') LIMIT 1)),
+('2026-05-05', '2026-05-05', (SELECT id FROM estado_prestamo WHERE descripcion_estado_prestamo = 'Devuelto'), (SELECT id FROM usuario WHERE email = 'patriciapower@ejemplo.com'), (SELECT id FROM ejemplar WHERE libro_id = (SELECT id FROM libro WHERE isbn = '987-956-321-321') AND fec_ingreso = '2026-04-01'));
+
+-- Nuevas Devoluciones
+INSERT INTO devolucion (descripcion, fecha_devolucion, gestor_id, prestamo_id) VALUES
+('devolucion conforme', '2026-04-06', (SELECT id FROM usuario WHERE email = 'admin@librarypro.com'), (SELECT id FROM prestamo WHERE usuario_id = (SELECT id FROM usuario WHERE email = 'beatriz.ortiz49@ejemplo.com') LIMIT 1)),
+('devolucion conforme', '2026-04-06', (SELECT id FROM usuario WHERE email = 'admin@librarypro.com'), (SELECT id FROM prestamo WHERE usuario_id = (SELECT id FROM usuario WHERE email = 'carlos.medina46@ejemplo.com') LIMIT 1)),
+('devolucion conforme', '2026-04-06', (SELECT id FROM usuario WHERE email = 'admin@librarypro.com'), (SELECT id FROM prestamo WHERE usuario_id = (SELECT id FROM usuario WHERE email = 'miguel.vázquez32@ejemplo.com') LIMIT 1)),
+('devolucion conforme', '2026-04-06', (SELECT id FROM usuario WHERE email = 'admin@librarypro.com'), (SELECT id FROM prestamo WHERE usuario_id = (SELECT id FROM usuario WHERE email = 'raúl.romero3@ejemplo.com') LIMIT 1)),
+('devolucion sin novedades, todo correcto.', '2026-05-04', (SELECT id FROM usuario WHERE email = 'admin@librarypro.com'), (SELECT id FROM prestamo WHERE usuario_id = (SELECT id FROM usuario WHERE email = 'patriciapower@ejemplo.com') AND fecha_inicio = '2026-05-05' LIMIT 1));
