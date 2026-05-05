@@ -1,6 +1,7 @@
 -- Database Schema for LibraryPro - Postgres 17 (Refactored/Normalized)
 -- Drop tables if they exist to allow clean re-execution
 DROP TABLE IF EXISTS donacion;
+DROP TABLE IF EXISTS devolucion;
 DROP TABLE IF EXISTS prestamo;
 DROP TABLE IF EXISTS ejemplar;
 DROP TABLE IF EXISTS libro;

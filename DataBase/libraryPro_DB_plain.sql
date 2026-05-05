@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict pcGTi16amT1UEsWG8WcsFMrB85ZkFlQz0YevagUL9gLtGSn9B92huFEsb0DxhZx
+\restrict kwPhkcLVO7UmUedyrqTLROQ8xT8I570c6AZBKyI1NDNFr53qyfCW6R0mPPq9cob
 
 -- Dumped from database version 18.1
 -- Dumped by pg_dump version 18.0
 
--- Started on 2026-05-04 20:49:47
+-- Started on 2026-05-05 12:36:28
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -454,6 +454,7 @@ COPY public.devolucion (id, descripcion, fecha_devolucion, gestor_id, prestamo_i
 2	devolucion conforme	2026-04-06	1	1
 3	devolucion conforme	2026-04-06	1	6
 4	devolucion conforme	2026-04-06	1	10
+5	devolucion sin novedades, todo correcto.	2026-05-04	1	16
 \.
 
 
@@ -521,6 +522,7 @@ COPY public.donacion (id, fecha, observaciones, usuario_id, ejemplar_id) FROM st
 58	2026-04-01	danacion realizado por Juan Morales	9	105
 59	2026-04-02	donado por juan melendez	53	106
 60	2026-04-03	donado por juan melendez	53	107
+61	2026-05-04	libro nuevo - 	58	108
 \.
 
 
@@ -638,6 +640,7 @@ COPY public.ejemplar (id, libro_id, fec_ingreso, detalle, estado_id) FROM stdin;
 51	51	2023-01-01	Nuevo	1
 56	56	2023-01-01	Nuevo	1
 60	60	2023-01-01	Nuevo	1
+108	104	2026-05-05	Nuevo	1
 \.
 
 
@@ -777,6 +780,7 @@ COPY public.libro (id, isbn, titulo, autor, genero) FROM stdin;
 101	123456987789	Programacion de Objetos con Php 8	Autor Desconocido	Modernista
 102	123456987781	Programacion de Objetos con Php 8 V2	Juan MP	tecnologia
 103	987-956-321-321	Programacion POO de Java 2026	Juan Rulfo	tecnologia
+104	987654321321	Programación Orientados a Objetos con Java 25	Juan MP	tecnologia
 \.
 
 
@@ -801,6 +805,7 @@ COPY public.prestamo (id, fecha_inicio, fecha_devolucion, estado_id, usuario_id,
 6	2024-02-03	2026-04-06	2	35	56
 10	2024-01-20	2026-04-06	2	6	60
 15	2026-05-04	2026-05-11	1	54	2
+16	2026-05-05	2026-05-05	2	58	105
 \.
 
 
@@ -880,6 +885,7 @@ COPY public.usuario (id, nombre, email, password, telefono, direccion, rol_id, a
 54	Karina Nieto	karina@ejemplo.com	qwerty	123456789	calle hornos caleros 40	3	t
 2	Super Admin	super@lifesystem.com	super	600000002	Central 1	4	t
 57	Juan D. Meléndez Peña	juanmelendez.pe@gmail.com	qwerty	987456321	calle hornos caleros 37	1	t
+58	Patricia Power	patriciapower@ejemplo.com	test	123456789	calle real 1	1	t
 56	john sunday	jsunday@gmail.com	qwerty	987456321	calle hornos caleros 37	2	t
 \.
 
@@ -890,7 +896,7 @@ COPY public.usuario (id, nombre, email, password, telefono, direccion, rol_id, a
 -- Name: devolucion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.devolucion_id_seq', 4, true);
+SELECT pg_catalog.setval('public.devolucion_id_seq', 5, true);
 
 
 --
@@ -899,7 +905,7 @@ SELECT pg_catalog.setval('public.devolucion_id_seq', 4, true);
 -- Name: donacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.donacion_id_seq', 60, true);
+SELECT pg_catalog.setval('public.donacion_id_seq', 61, true);
 
 
 --
@@ -908,7 +914,7 @@ SELECT pg_catalog.setval('public.donacion_id_seq', 60, true);
 -- Name: ejemplar_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.ejemplar_id_seq', 107, true);
+SELECT pg_catalog.setval('public.ejemplar_id_seq', 108, true);
 
 
 --
@@ -935,7 +941,7 @@ SELECT pg_catalog.setval('public.estado_prestamo_id_seq', 2, true);
 -- Name: libro_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.libro_id_seq', 103, true);
+SELECT pg_catalog.setval('public.libro_id_seq', 104, true);
 
 
 --
@@ -944,7 +950,7 @@ SELECT pg_catalog.setval('public.libro_id_seq', 103, true);
 -- Name: prestamo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.prestamo_id_seq', 15, true);
+SELECT pg_catalog.setval('public.prestamo_id_seq', 16, true);
 
 
 --
@@ -962,7 +968,7 @@ SELECT pg_catalog.setval('public.rol_id_seq', 4, true);
 -- Name: usuario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usuario_id_seq', 57, true);
+SELECT pg_catalog.setval('public.usuario_id_seq', 58, true);
 
 
 --
@@ -1181,11 +1187,11 @@ ALTER TABLE ONLY public.usuario
     ADD CONSTRAINT usuario_rol_id_fkey FOREIGN KEY (rol_id) REFERENCES public.rol(id);
 
 
--- Completed on 2026-05-04 20:49:47
+-- Completed on 2026-05-05 12:36:28
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict pcGTi16amT1UEsWG8WcsFMrB85ZkFlQz0YevagUL9gLtGSn9B92huFEsb0DxhZx
+\unrestrict kwPhkcLVO7UmUedyrqTLROQ8xT8I570c6AZBKyI1NDNFr53qyfCW6R0mPPq9cob
 

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Instalación y Despliegue - LiFe System</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #10b981;
+            --purple: #cb3eeb;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            display: flex;
+        }
+
+        /* Sidebar Navegación */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-card);
+            border-right: 1px solid var(--border);
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Contenido Principal */
+        .main-content {
+            flex: 1;
+            margin-left: 320px;
+            padding: 40px;
+            max-width: 900px;
+        }
+
+        .main-content h1 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            border: 1px solid var(--border);
+        }
+
+        .section h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-top: 0;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section h4 {
+            color: var(--text-main);
+            font-size: 1.2rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p, li {
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .steps-list {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .steps-list li {
+            margin-bottom: 10px;
+        }
+
+        /* Imágenes y placeholders */
+        .image-container {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .image-caption {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        .alert-info {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .alert-warning {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        code {
+            background: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #d926a9;
+            font-family: monospace;
+        }
+        
+        .cmd-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menú Lateral -->
+    <div class="sidebar">
+        <h2>⚙️ LiFe System</h2>
+        <ul>
+            <li><a href="#intro">1. Requisitos Previos</a></li>
+            <li><a href="#bd">2. Configuración de Base de Datos</a></li>
+            <li><a href="#backend">3. Despliegue del Backend (Spring Boot)</a></li>
+            <li><a href="#frontend">4. Despliegue del Frontend (Angular)</a></li>
+            <li><a href="#verificacion">5. Verificación de Funcionamiento</a></li>
+        </ul>
+    </div>
+
+    <!-- Contenido del Manual -->
+    <div class="main-content">
+        <h1 id="intro">Manual de Instalación</h1>
+        <p class="subtitle">Guía de capacitación técnica para la configuración y levantamiento del entorno de desarrollo de LiFe System.</p>
+
+        <!-- SECCIÓN 1: REQUISITOS -->
+        <div id="requisitos" class="section">
+            <h3>1. Requisitos Previos del Sistema</h3>
+            <p>Antes de comenzar con la instalación, asegúrese de que el equipo de desarrollo cuente con las siguientes herramientas instaladas:</p>
+            <ul>
+                <li><strong>Java JDK (Versión 17 o 21):</strong> Entorno de ejecución para el servidor Spring Boot.</li>
+                <li><strong>Eclipse IDE:</strong> O cualquier IDE compatible con Java (IntelliJ IDEA, VS Code).</li>
+                <li><strong>Node.js y npm:</strong> Necesarios para compilar y ejecutar el proyecto Angular.</li>
+                <li><strong>PostgreSQL:</strong> Motor de base de datos relacional.</li>
+                <li><strong>pgAdmin 4:</strong> Interfaz gráfica para gestionar la base de datos PostgreSQL.</li>
+                <li><strong>Git:</strong> Para clonar el repositorio del proyecto.</li>
+            </ul>
+        </div>
+
+        <!-- SECCIÓN 2: BASE DE DATOS -->
+        <div id="bd" class="section">
+            <h3>2. Configuración de la Base de Datos</h3>
+            <p>LiFe System requiere una base de datos operativa antes de que el servidor Backend pueda iniciarse.</p>
+            
+            <ol class="steps-list">
+                <li>Abra <strong>pgAdmin 4</strong> e inicie sesión en su servidor local de PostgreSQL.</li>
+                <li>Haga clic derecho en <em>Databases</em> y seleccione <strong>Create > Database</strong>.</li>
+                <li>Asigne el nombre de la base de datos (por ejemplo, <code>librarypro_db</code>) y guárdela.</li>
+                <li>Haga clic derecho sobre la base de datos recién creada y abra la herramienta <strong>Query Tool</strong>.</li>
+                <li>Copie el contenido del archivo <code>schema.sql</code> (ubicado en la carpeta <code>DataBase/</code> del proyecto) y ejecútelo para crear todas las tablas necesarias.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="https://placehold.co/800x400/10b981/ffffff?text=Captura:+pgAdmin+y+Query+Tool" alt="Configuración BD">
+                <div class="image-caption">Figura 1: Creación de tablas en pgAdmin 4.</div>
+            </div>
+
+            <div class="alert-warning">
+                <strong>Importante:</strong> Anote el nombre de usuario y contraseña de su PostgreSQL, ya que los necesitará para configurar el Backend en el siguiente paso.
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: BACKEND -->
+        <div id="backend" class="section">
+            <h3>3. Despliegue del Backend (Java / Spring Boot)</h3>
+            <p>El backend provee la API REST y se conecta directamente a la base de datos PostgreSQL.</p>
+            
+            <h4>Paso 3.1: Importar el proyecto</h4>
+            <ol class="steps-list">
+                <li>Abra <strong>Eclipse IDE</strong>.</li>
+                <li>Vaya a <em>File > Import > Maven > Existing Maven Projects</em>.</li>
+                <li>Seleccione la carpeta <code>AppBack/libraryPro</code> de su repositorio y haga clic en <em>Finish</em>.</li>
+                <li>Espere a que Maven descargue todas las dependencias listadas en el <code>pom.xml</code>.</li>
+            </ol>
+
+            <h4>Paso 3.2: Configurar credenciales</h4>
+            <ol class="steps-list">
+                <li>En el árbol del proyecto, navegue hasta <code>src/main/resources/application.properties</code>.</li>
+                <li>Edite el archivo para que coincida con su configuración local:</li>
+            </ol>
+            <div class="cmd-block">
+spring.datasource.url=jdbc:postgresql://localhost:5432/librarypro_db
+spring.datasource.username=tu_usuario_postgres
+spring.datasource.password=tu_contraseña_postgres
+            </div>
+
+            <h4>Paso 3.3: Ejecutar el Servidor</h4>
+            <ol class="steps-list">
+                <li>Localice la clase principal <code>AppLibraryPro.java</code> en <code>src/main/java/com/ssdk/libraryPro/</code>.</li>
+                <li>Haga clic derecho sobre el archivo y seleccione <strong>Run As > Java Application</strong> (o <em>Spring Boot App</em>).</li>
+                <li>Observe la consola de Eclipse. Debería ver el mensaje de que el Tomcat embebido inició correctamente en el puerto <code>8080</code>.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="https://placehold.co/800x400/2563eb/ffffff?text=Captura:+Consola+de+Eclipse+con+Spring+Boot" alt="Consola Spring Boot">
+                <div class="image-caption">Figura 2: Consola de Eclipse mostrando el arranque exitoso.</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 4: FRONTEND -->
+        <div id="frontend" class="section">
+            <h3>4. Despliegue del Frontend (Angular)</h3>
+            <p>Una vez que el backend y la base de datos están corriendo, podemos levantar la interfaz gráfica de usuario.</p>
+            
+            <ol class="steps-list">
+                <li>Abra una terminal de comandos (CMD, PowerShell o Git Bash).</li>
+                <li>Navegue hacia la carpeta del frontend del proyecto:
+                    <div class="cmd-block">cd ruta/hacia/pr-LibraryPro/AppFrond</div>
+                </li>
+                <li>Instale las dependencias de Node.js (Esto solo es necesario la primera vez):
+                    <div class="cmd-block">npm install</div>
+                </li>
+                <li>Inicie el servidor de desarrollo de Angular:
+                    <div class="cmd-block">npm run start</div>
+                    <em>Nota: Internamente, esto ejecuta <code>ng serve --o</code>.</em>
+                </li>
+            </ol>
+
+            <div class="image-container">
+                <img src="https://placehold.co/800x400/cb3eeb/ffffff?text=Captura:+Terminal+ejecutando+Angular" alt="Terminal Angular">
+                <div class="image-caption">Figura 3: Terminal mostrando la compilación exitosa de Angular.</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 5: VERIFICACIÓN -->
+        <div id="verificacion" class="section">
+            <h3>5. Verificación de Funcionamiento</h3>
+            <p>Para comprobar que toda la arquitectura está comunicándose correctamente:</p>
+            <ol class="steps-list">
+                <li>El comando de Angular debió abrir automáticamente su navegador web en <code>http://localhost:4200</code>.</li>
+                <li>Si no lo hizo, abra su navegador y visite dicha dirección.</li>
+                <li>Debe visualizar la pantalla de **Login** de LiFe System.</li>
+                <li>Intente iniciar sesión con un usuario existente en su base de datos. Si ingresa al sistema sin errores de red, **la instalación ha sido un éxito.**</li>
+            </ol>
+            <div class="alert-info">
+                <strong>En caso de error:</strong> Presione <code>F12</code> en su navegador, vaya a la pestaña <em>Consola</em> o <em>Red (Network)</em> y verifique si hay errores CORS o de conexión rechazada. Esto generalmente indica que el Backend de Spring Boot (paso 3) no se inició correctamente.
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

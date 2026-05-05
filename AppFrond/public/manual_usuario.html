@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Usuario - LiFe System</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #10b981;
+            --purple: #cb3eeb;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            display: flex;
+        }
+
+        /* Sidebar Navegación */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-card);
+            border-right: 1px solid var(--border);
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Contenido Principal */
+        .main-content {
+            flex: 1;
+            margin-left: 320px; /* Ancho del sidebar + padding */
+            padding: 40px;
+            max-width: 900px;
+        }
+
+        .main-content h1 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            border: 1px solid var(--border);
+        }
+
+        .section h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-top: 0;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section h4 {
+            color: var(--text-main);
+            font-size: 1.2rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p, li {
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .steps-list {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .steps-list li {
+            margin-bottom: 10px;
+        }
+
+        /* Imágenes y placeholders */
+        .image-container {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .image-caption {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        .alert-info {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menú Lateral -->
+    <div class="sidebar">
+        <h2>📚 LiFe System</h2>
+        <ul>
+            <li><a href="#intro">Introducción</a></li>
+            <li><a href="#login">1. Inicio de Sesión</a></li>
+            <li><a href="#home">2. Dashboard Principal</a></li>
+            <li><a href="#catalogo">3. Catálogo de Libros</a></li>
+            <li><a href="#usuarios">4. Gestión de Usuarios</a></li>
+            <li><a href="#prestamo">5. Préstamos</a></li>
+            <li><a href="#devolucion">6. Devoluciones</a></li>
+            <li><a href="#donacion">7. Donaciones</a></li>
+            <li><a href="#reportes">8. Reportes y Métricas</a></li>
+            <li><a href="#soporte">9. Soporte</a></li>
+        </ul>
+    </div>
+
+    <!-- Contenido del Manual -->
+    <div class="main-content">
+        <h1 id="intro">Manual de Usuario Integral</h1>
+        <p class="subtitle">Guía de capacitación completa para la gestión bibliotecaria en LiFe System.</p>
+
+        <!-- SECCIÓN 1: LOGIN -->
+        <div id="login" class="section">
+            <h3>1. Inicio de Sesión</h3>
+            <p>Para acceder a las funcionalidades del sistema, es obligatorio autenticarse con credenciales válidas.</p>
+            <ol class="steps-list">
+                <li>Abra el navegador web e ingrese a la dirección del sistema (ej. <code>http://localhost:4200</code>).</li>
+                <li>Visualizará la pantalla principal de <strong>Login</strong>.</li>
+                <li>Ingrese su <strong>Correo Electrónico</strong> registrado y su <strong>Contraseña</strong>.</li>
+                <li>Haga clic en el botón <strong>"Ingresar"</strong> o <strong>"Iniciar Sesión"</strong>.</li>
+            </ol>
+            
+            <div class="image-container">
+                <img src="https://placehold.co/800x400/2563eb/ffffff?text=Captura:+Pantalla+de+Login" alt="Pantalla de Login">
+                <div class="image-caption">Figura 1: Interfaz de Inicio de Sesión.</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: HOME / DASHBOARD -->
+        <div id="home" class="section">
+            <h3>2. Dashboard Principal (Home)</h3>
+            <p>Una vez autenticado, ingresará al Dashboard principal. Este espacio sirve como panel de control rápido.</p>
+            <ol class="steps-list">
+                <li>En la pantalla de inicio, encontrará accesos rápidos a las funciones más utilizadas.</li>
+                <li>Dependiendo de su nivel de acceso (Lector o Gestor), visualizará notificaciones, préstamos pendientes o estadísticas resumidas.</li>
+                <li>Utilice el menú de navegación (lateral o inferior) para desplazarse entre los diferentes módulos del sistema.</li>
+            </ol>
+            <div class="image-container">
+                <img src="https://placehold.co/800x400/1e293b/ffffff?text=Captura:+Dashboard+Principal" alt="Dashboard Principal">
+                <div class="image-caption">Figura 2: Vista principal del sistema.</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: CATÁLOGO DE LIBROS -->
+        <div id="catalogo" class="section">
+            <h3>3. Catálogo de Libros</h3>
+            <p>Módulo destinado a la búsqueda y gestión del inventario literario de la biblioteca.</p>
+            
+            <h4>Buscador de Libros</h4>
+            <ol class="steps-list">
+                <li>Acceda al módulo <strong>"Libros"</strong>.</li>
+                <li>Utilice la barra de búsqueda para filtrar obras por Título, Autor, Género o ISBN.</li>
+                <li>Haga clic sobre un libro en la lista para ver su detalle y la cantidad de ejemplares disponibles.</li>
+            </ol>
+
+            <h4>Agregar un Libro Nuevo</h4>
+            <ol class="steps-list">
+                <li>Dentro de la vista del catálogo, haga clic en <strong>"Nuevo Libro"</strong>.</li>
+                <li>Complete el formulario con el ISBN, Título, Autor (selección autocompletada) y Género.</li>
+                <li>Guarde los cambios. Esto creará la "ficha" universal del libro en la base de datos.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="https://placehold.co/800x400/10b981/ffffff?text=Captura:+Catalogo+y+Buscador" alt="Buscador de Libros">
+                <div class="image-caption">Figura 3: Listado interactivo de libros.</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 4: GESTIÓN DE USUARIOS -->
+        <div id="usuarios" class="section">
+            <h3>4. Gestión de Usuarios (Responsables)</h3>
+            <p>Panel centralizado para administrar a todas las personas que interactúan con la biblioteca.</p>
+            
+            <h4>Crear o Editar un Usuario (Lector / Gestor)</h4>
+            <ol class="steps-list">
+                <li>Seleccione el módulo <strong>"Gestionar Responsables"</strong>.</li>
+                <li>Navegue entre las pestañas "Lectores" y "Gestores" según el perfil que desee administrar.</li>
+                <li>Haga clic en <strong>"Nuevo"</strong> para registrar a alguien, o use el botón de edición junto a un usuario existente.</li>
+                <li>En el modal, modifique los datos personales y de contacto. Guarde los cambios.</li>
+            </ol>
+
+            <h4>Dashboard de Actividad del Usuario</h4>
+            <ol class="steps-list">
+                <li>Al visualizar la lista de usuarios, seleccione el botón de <strong>"Ver Actividad"</strong> de un lector específico.</li>
+                <li>Esto abrirá un panel con el historial interactivo de dicho usuario: Préstamos activos, devoluciones pasadas y donaciones realizadas.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="https://placehold.co/800x400/cb3eeb/ffffff?text=Captura:+Panel+de+Usuarios" alt="Gestión de Usuarios">
+                <div class="image-caption">Figura 4: Interfaz de gestión de lectores y gestores.</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 5: PRÉSTAMOS -->
+        <div id="prestamo" class="section">
+            <h3>5. Préstamos</h3>
+            <p>Proceso para la salida temporal de material de la biblioteca.</p>
+            <ol class="steps-list">
+                <li>Diríjase al módulo de <strong>"Préstamos"</strong>.</li>
+                <li>Haga clic en <strong>"Nuevo Préstamo"</strong>.</li>
+                <li>Busque al <strong>Lector</strong> por su nombre o correo.</li>
+                <li>Seleccione el <strong>Ejemplar</strong> físico del libro que se llevará (debe estar en estado "Disponible").</li>
+                <li>Revise las fechas asignadas automáticamente y haga clic en <strong>"Registrar"</strong>.</li>
+            </ol>
+
+            <div class="alert-info">
+                <strong>Nota:</strong> Al registrarse, el estado del ejemplar cambia automáticamente a "Prestado".
+            </div>
+
+            <div class="image-container">
+                <img src="https://placehold.co/800x400/2563eb/ffffff?text=Captura:+Registro+de+Prestamo" alt="Pantalla de Préstamo">
+                <div class="image-caption">Figura 5: Formulario de Préstamos.</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 6: DEVOLUCIONES -->
+        <div id="devolucion" class="section">
+            <h3>6. Devoluciones</h3>
+            <p>Reintegro de un ejemplar al inventario de la biblioteca.</p>
+            <ol class="steps-list">
+                <li>Acceda al módulo de <strong>"Devoluciones"</strong>.</li>
+                <li>Utilice el buscador para encontrar el préstamo activo del lector.</li>
+                <li>Haga clic en <strong>"Procesar Devolución"</strong>.</li>
+                <li>Añada observaciones si el libro presenta daños.</li>
+                <li>Haga clic en <strong>"Confirmar"</strong>. El ejemplar pasará nuevamente a estado "Disponible" o "Dañado" según la evaluación.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="https://placehold.co/800x400/64748b/ffffff?text=Captura:+Procesar+Devolucion" alt="Pantalla de Devolución">
+                <div class="image-caption">Figura 6: Modal de confirmación de Devoluciones.</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 7: DONACIONES -->
+        <div id="donacion" class="section">
+            <h3>7. Donaciones</h3>
+            <p>Registro de entrada de nuevos ejemplares aportados por usuarios.</p>
+            <ol class="steps-list">
+                <li>Diríjase al módulo de <strong>"Donaciones"</strong>.</li>
+                <li>Seleccione <strong>"Nueva Donación"</strong>.</li>
+                <li>Identifique al usuario donante o seleccione donación anónima.</li>
+                <li>Ingrese los datos correspondientes al libro aportado.</li>
+                <li>Guarde el registro. Esto creará automáticamente el nuevo ejemplar físico en la base de datos.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="https://placehold.co/800x400/03297b/ffffff?text=Captura:+Registro+de+Donacion" alt="Pantalla de Donación">
+                <div class="image-caption">Figura 7: Interfaz de registro de Donaciones.</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 8: REPORTES Y MÉTRICAS -->
+        <div id="reportes" class="section">
+            <h3>8. Reportes y Métricas Globales</h3>
+            <p>Panel analítico exclusivo para administradores, diseñado para la toma de decisiones.</p>
+            <ol class="steps-list">
+                <li>Acceda al módulo <strong>"Reportes"</strong>.</li>
+                <li>Visualizará gráficos y tarjetas de métricas que resumen:</li>
+                <ul>
+                    <li>Libros más prestados.</li>
+                    <li>Porcentaje de ejemplares disponibles vs. prestados.</li>
+                    <li>Usuarios con mayores préstamos.</li>
+                </ul>
+                <li>Puede aplicar filtros por fechas o tipo de actividad para generar informes precisos de la operación de la biblioteca.</li>
+            </ol>
+            <div class="image-container">
+                <img src="https://placehold.co/800x400/10b981/ffffff?text=Captura:+Panel+de+Reportes" alt="Panel de Reportes">
+                <div class="image-caption">Figura 8: Dashboard analítico de Reportes.</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 9: SOPORTE -->
+        <div id="soporte" class="section">
+            <h3>9. Soporte Técnico</h3>
+            <p>Sección de ayuda e información del sistema.</p>
+            <ol class="steps-list">
+                <li>Ingrese a la pestaña <strong>"Soporte"</strong> desde el menú de usuario.</li>
+                <li>Encontrará detalles sobre la versión actual del sistema (LiFe System) y las tecnologías utilizadas.</li>
+                <li>Muestra los canales de contacto con el equipo de desarrollo para reporte de bugs o solicitud de mejoras.</li>
+            </ol>
+            <div class="image-container">
+                <img src="https://placehold.co/800x400/1e293b/ffffff?text=Captura:+Pantalla+de+Soporte" alt="Soporte Técnico">
+                <div class="image-caption">Figura 9: Información de Soporte.</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
